@@ -4,10 +4,15 @@ import datetime
 
 class Artist: #jaime
   def __init__(self, firstName, lastName, album_list, artist_dp):
-    self._firstName:str = firstName
-    self._lastName:str = lastName
-    self._albums:List[Album] = []
-    self._photo:str = artist_dp
+    # self._firstName:str = firstName
+    # self._lastName:str = lastName
+    # self._albums:List[Album] = []
+    # self._photo:str = artist_dp
+
+    self._firstName = firstName
+    self._lastName = lastName
+    self._albums = []
+    self._photo = artist_dp
 
   def add_album(self, album): self._albums.append(album)
   def change_photo(self, photo): self._photo = photo
@@ -30,7 +35,7 @@ class Album: # Don
         return self.__release_date
     def get_song_list(self):
         return self.__song_list
-  
+
 # def make_album(art, title, artist, release_date, song_list):
 #   	state = False
 #     if typeof(art) == 
@@ -82,7 +87,6 @@ jaime = { #refactor to class
     'tiktok': 'tiktok.com/jaime',
     'snapchat': 'snap.com/jaime',
     'myspace': "myspace.com/chris"
-  
 }
 
 chrisN = User("ChrisN", jaime, [test_song1, test_song2], [test_song1, test_song2], [test_song1, test_song2], True)
