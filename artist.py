@@ -51,4 +51,4 @@ class Artist:
 
 
   #deletes all albums 
-  def wipe_discography(self, album): self.__album_list.clear()
+  def wipe_discography(self): self.__album_list.clear()
