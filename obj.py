@@ -1,4 +1,7 @@
+from typing import List
+from datetime import date
 import datetime
+
 
 # firstname, lastname, title, artist, album, date, art, time, song, lyrics, 
 
@@ -41,7 +44,7 @@ class Song:
         self._coverArt:str = coverArt
         self._artist:Artist = artist
         self._lyrics:str = lyrics
-        self._realeaseDate:Date = realeaseDate
+        self._realeaseDate:date = realeaseDate
 
 
 test_artist = Artist("Chris", "Ng", [], "github.com")
@@ -62,14 +65,14 @@ test_artist.add_album(test_album)
 print(test_artist._albums[0].get_title())
 
 
-class User:
-    def __init__(self, name, profileInfo, preferences, likes, playHistory, accountType = False):
-        self.name = name
-        self.profileInfo:Profile = profileInfo
-        self.accountType:bool = accountType
-        self.preferences:List[Song] = preferences 
-        self.likes:List[Song] = likes
-        self.playHistory:List[Song] = playHistory
+# class User:
+#     def __init__(self, name, profileInfo, preferences, likes, playHistory, accountType = False):
+#         self.name = name
+#         self.profileInfo:Profile = profileInfo
+#         self.accountType:bool = accountType
+#         self.preferences:List[Song] = preferences 
+#         self.likes:List[Song] = likes
+#         self.playHistory:List[Song] = playHistory
 
 
 
