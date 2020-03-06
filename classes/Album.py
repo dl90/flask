@@ -1,6 +1,5 @@
 import datetime
-import song
-
+import Song
 
 class Album:  # Don
     def __init__(self, title, artist, art, song_list, release_date=(datetime.datetime.now())):
@@ -63,6 +62,7 @@ class Album:  # Don
             self.__song_list = input
 
     # insert song at specific position
-    def single_song_append_song_list(self, input, index=(len(self.__song_list) - 1)):
-        if((type(input) == song.Song) and (index > 0 and index < len(self.__song_list))):
+    def single_song_append_song_list(self, input):
+        index = len(self.__song_list) - 1
+        if((type(input) == Song.Song) and (index > 0 and index < len(self.__song_list))):
             self.__song_list.insert(index - 1, input)

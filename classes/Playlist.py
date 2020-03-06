@@ -1,5 +1,5 @@
 import datetime
-import song
+import Song
 
 
 class Playlist:  # Don
@@ -30,7 +30,8 @@ class Playlist:  # Don
         return self.__songs
 
     # insert song at specific position
-    def single_song_append_playlist(self, input, index=(self.__numberOfSongs - 1)):
+    def single_song_append_playlist(self, input):
+        index = self.__numberOfSongs - 1
         if((type(input) == song.Song) and (index > 0 and index < len(self.__songs))):
             self.__song_list.insert(index - 1, input)
 
