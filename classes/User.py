@@ -1,5 +1,6 @@
 from typing import List
-from Profile import Profile
+import Profile
+import Song
 
 class User:
   def __init__(self, username, profileInfo, recommendations, likes, playHistory, isPremium=False):

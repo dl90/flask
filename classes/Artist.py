@@ -1,4 +1,4 @@
-import album
+import Album
 
 class Artist:
   def __init__(self, firstName, lastName, album_list, album_art):
