@@ -1,8 +1,8 @@
 from typing import List
-import Profile
-import Song
+from classes.Profile import Profile
+from classes.Song import Song
 
-class User:
+class User():
   def __init__(self, username, profileInfo, recommendations, likes, playHistory, isPremium=False):
     self._username: str = username
     self._profileInfo: Profile = profileInfo
