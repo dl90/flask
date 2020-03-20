@@ -1,20 +1,16 @@
 import datetime
-import Song
+from typing import List
+from classes.Artist import Artist
+from classes.Song import Song
 
 
-class Playlist:  # Don
-    def __init__(self, name, songs, date, numberOfSongs, genreOfSongs):
-        self.__name = name
-        self.__songs = songs    # array of songs
-        self.__date = date      # datetime
-        self.__num_of_songs = len(self.__songs)
-        self.__genre = genreOfSongs
-
-        # self.__name:str = name
-        # self.__songs:song.Song = songs            # array of songs
-        # self.__date:datetime.datetime = date      # datetime
-        # self.__num_of_songs:int = len(self.__songs)
-        # self.__genre:str = genreOfSongs
+class Playlist:
+    def __init__(self, name, songs, date, genreOfSongs):
+        self.__name:str = name
+        self.__songs:List[Song] = songs
+        self.__date:datetime.datetime = date
+        self.__num_of_songs:int = len(self.__songs)
+        self.__genre:str = genreOfSongs
 
     @property
     def name(self):
@@ -30,9 +26,8 @@ class Playlist:  # Don
         return self.__songs
 
     # insert song at specific position
-    def single_song_append_playlist(self, input):
-        index = self.__numberOfSongs - 1
-        if((type(input) == song.Song) and (index > 0 and index < len(self.__songs))):
+    def single_song_append_playlist(self, input, index):
+        if((type(input) == Song) and (index > 0 and index < self.__numberOfSongs - 1)):
             self.__song_list.insert(index - 1, input)
 
     # merge two playlists
