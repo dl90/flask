@@ -3,29 +3,41 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import (Text)
 from datetime import date
 
-# https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
-# https://pypi.org/project/Flask-SQLAlchemy/
-# https://pypi.org/project/Flask-Migrate/
-# https://flask-migrate.readthedocs.io/en/latest/
-
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite3'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# from db import db
-# db.create_all()
-
 class User(db.Model):
+    __tablename__ = 'User'
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), unique=True, nullable=False)
+    password = db.Column(db.String(255), nullable=False)
     profileInfo = db.Column(db.PickleType)
     recommendations = db.Column(db.PickleType)
     likes = db.Column(db.PickleType)
     playHistory = db.Column(db.PickleType)
     isPremium = db.Column(db.Boolean)
 
+    def __init__(self, username, password, profileInfo=None, recommendations=None, likes=None, playHistory=None, isPremium=False) :
+        self.username = username
+        self.password = password
+        self.profileInfo = profileInfo
+        self.recommendations = recommendations
+        self.likes = likes
+        self.playHistory = playHistory
+        self.isPremium = isPremium
+
+    def __repr__(self):
+        return '<User: %r, Password: %r>' % (self.username, self.password)
+
+    def __hash__(self):
+        return hash(self.username)
+
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
     firstName = db.Column(db.String(255))
     lastName = db.Column(db.String(255))
     email = db.Column(db.String(255), unique=True, nullable=False)
@@ -64,7 +76,5 @@ class Songs(db.Model):
     lyrics = db.Column(db.Text)
 
 
-db.session.add(User(username="Flask", profileInfo="example@example.com"))
-db.session.commit()
-
-users = User.query.all()
+from db import db
+db.create_all()
