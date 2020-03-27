@@ -1,5 +1,5 @@
-from schema import db
-from schema import (User, Profile, Playlist, Artist, Album, Song)
+from db.schema import db
+from db.schema import (User, Profile, Playlist, Artist, Album, Song)
 
 
 user1 = User(username="test", password="abc", recommendations={ "abc" }, likes=["song1", "song2"])

@@ -1,11 +1,10 @@
-from flask import Flask
+from app import app
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import (Text)
 from sqlalchemy.orm import relationship
 from datetime import date
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/database.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 

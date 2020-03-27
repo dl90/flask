@@ -6,11 +6,11 @@ from classes.Song import Song
 
 class Playlist:
     def __init__(self, name, songs, date, genreOfSongs):
-        self.__name:str = name
-        self.__songs:List[Song] = songs
-        self.__date:datetime.datetime = date
-        self.__num_of_songs:int = len(self.__songs)
-        self.__genre:str = genreOfSongs
+        self.__name: str = name
+        self.__songs: List[Song] = songs
+        self.__date: datetime.datetime = date
+        self.__num_of_songs: int = len(self.__songs)
+        self.__genre: str = genreOfSongs
 
     @property
     def name(self):
