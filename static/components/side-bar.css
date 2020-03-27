@@ -1,0 +1,68 @@
+side-bar {
+  grid-area: side-bar;
+  display: grid;
+  grid-template-rows: max-content max-content max-content max-content;
+  gap: 2rem;
+  justify-items: center;
+  background-color: #2C2C2C;
+  height: 100vh;
+  font-weight: bold;
+}
+.logo {
+  margin: 2rem 0 0 0;
+}
+form {
+  display: flex;
+}
+.search {
+  background-color: #222;
+  color: #FFF;
+  border: none;
+  border-radius: 0.5rem;
+  text-indent: 1rem;
+  width: 13rem;
+  height: 1.7rem;
+  box-shadow: 0 0 0 1px #555;
+}
+nav-buttons {
+  display: grid;
+  gap: 0.3rem;
+
+}
+.button {
+  color: #E0E0E0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  background-color: rgba(255,255,255,0.1);
+  width: 12rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.icon {
+  height: 80%;
+  margin-right: 0.5rem;
+}
+.button:hover {
+  background-color: rgba(255,255,255,0.2);
+}
+.button:active {
+  background-color: rgba(255,255,255,0.25);
+}
+.nav-button {
+  padding-left: 0.1rem;
+  justify-content: flex-start;
+}
+sb-playlists {
+  display: grid;
+  gap: 0.3rem;
+}
+.label {
+  margin: 0.5rem;
+}

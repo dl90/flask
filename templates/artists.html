@@ -5,43 +5,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="public/css/artists-styles.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Artist</title>
 </head>
 
 <body>
-    <!-- <header>
+    <header>
+        <div class="sidebar">
             <h3> {{ appName }}</h3>
+            <br>
             <div class="search">
-                <i class="fa fa-search"></i>
                 <input type="text" class="searchTerm" placeholder="Search">
             </div>
+            <br>
+
+
+            <nav-buttons>
+
+                <a class='button nav-button d-flex flex-column'>
+                    <svg class='icon' width='30' height='30' viewBox='0 0 30 30' fill='none'
+                        xmlns='http://www.w3.org/2000/svg'>
+                        <rect width='30' height='30' rx='8' fill='url(#paint0_linear)' />
+                        <path d='M11 21V8L23 6V19' stroke='white' stroke-width='2' stroke-linecap='round'
+                            stroke-linejoin='round' />
+                        <path
+                            d='M8 24C9.65685 24 11 22.6569 11 21C11 19.3431 9.65685 18 8 18C6.34315 18 5 19.3431 5 21C5 22.6569 6.34315 24 8 24Z'
+                            stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' />
+                        <path
+                            d='M20 22C21.6569 22 23 20.6569 23 19C23 17.3431 21.6569 16 20 16C18.3431 16 17 17.3431 17 19C17 20.6569 18.3431 22 20 22Z'
+                            stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' />
+                        <defs>
+                            <linearGradient id='paint0_linear' x1='15' y1='0' x2='15' y2='30'
+                                gradientUnits='userSpaceOnUse'>
+                                <stop stop-color='#EB0038' />
+                                <stop offset='1' stop-color='#D70074' />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>Home</span>
+                    <br>
+                </a>
+                <a class='button nav-button'>
+                    <svg class='icon' width='30' height='30' viewBox='0 0 30 30' fill='none'
+                        xmlns='http://www.w3.org/2000/svg'>
+                        <rect width='30' height='30' rx='8' fill='url(#paint0_linear)' />
+                        <path d='M13 6H6V13H13V6Z' stroke='white' stroke-width='2' stroke-linecap='round'
+                            stroke-linejoin='round' />
+                        <path d='M24 6H17V13H24V6Z' stroke='white' stroke-width='2' stroke-linecap='round'
+                            stroke-linejoin='round' />
+                        <path d='M24 17H17V24H24V17Z' stroke='white' stroke-width='2' stroke-linecap='round'
+                            stroke-linejoin='round' />
+                        <path d='M13 17H6V24H13V17Z' stroke='white' stroke-width='2' stroke-linecap='round'
+                            stroke-linejoin='round' />
+                        <defs>
+                            <linearGradient id='paint0_linear' x1='15' y1='0' x2='15' y2='30'
+                                gradientUnits='userSpaceOnUse'>
+                                <stop stop-color='#EB0038' />
+                                <stop offset='1' stop-color='#D70074' />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>Library</span>
+                    <br>
+                </a>
+            </nav-buttons>
+            <hr />
         </div>
-    </header> -->
-    <div class="top-button">
-        <button type="button">Sign In</button>
-    </div>
 
 
-    <section>
-        <img src={{ profileImage }} alt={{ alt }}>
+
+    </header>
+
+
+
+
+    <section class="main-content">
+        <div class="top-button d-flex flex-row-reverse">
+            <button type="button" class='btn btn-primary'>Sign In</button>
+        </div>
+        <div class="mainImage d-flex justify-content-center">
+            <img id="mainImage" class="profileImage" src={{ profileImage }} alt={{ alt }}>
+        </div>
+
+        <br>
 
         <h2>{{ artistName }}</h2>
 
-        <hr />
+        <br>
 
         <article>
             <h3>Albums</h3>
-            <div class="albums-list">
+            <div class="albums-list d-flex justify-content-start">
                 <div class="albums">
-                    <img src={{ albumArt }} alt={{ alt }}>
-                    <p>{{ title }}</p>
+                    <figure>
+                        <a href={{album_page}}>
+                            <img class="albumArt " src={{ albumArt }} alt={{ alt }}>
+                        </a>
+                        <p>{{ title }}</p>
+
                 </div>
+                </figure>
+
 
                 <div class="albums">
-                    <img src={{ albumArt }} alt={{ alt }}>
-                    <p>{{ title }}</p>
+                    <figure>
+                        <a href={{album_page}}>
+                            <img class="albumArt" src={{ albumArt }} alt={{ alt }}>
+                        </a>
+                        <p>{{ title }}</p>
                 </div>
+                </figure>
                 <!-- {% for item in albumsList %}
                 <div>
                 <img src={{ item.art }} alt={{ alt }}>
@@ -50,32 +125,92 @@
                 {% else %}
                 <br>
                 {% endfor %} -->
-               
+
             </div>
         </article>
+
+        <br>
+
+        <hr />
+
+        <article>
+            <h3>Playlists</h3>
+            <div class="albums-list d-flex justify-content-start">
+                <div class="albums">
+                    <figure>
+                        <a href={{playlist_page}}>
+                            <img class="albumArt " src={{ playlistArt }} alt={{ alt }}>
+                        </a>
+                        <p>{{ playlistTitle }}</p>
+
+                </div>
+                </figure>
+
+
+                <div class="albums">
+                    <figure>
+                        <a href={{playlist_page}}>
+                            <img class="albumArt" src={{ playlistArt }} alt={{ alt }}>
+                        </a>
+                        <p>{{ playlistTitle }}</p>
+                </div>
+                </figure>
+                <!-- {% for item in albumsList %}
+                <div>
+                <img src={{ item.art }} alt={{ alt }}>
+                
+                </div>
+                {% else %}
+                <br>
+                {% endfor %} -->
+
+                <div class="albums-list d-flex justify-content-start">
+                    <div class="albums">
+                        <figure>
+                            <a href={{playlist_page}}>
+                                <img class="albumArt " src={{ playlistArt }} alt={{ alt }}>
+                            </a>
+                            <p>{{ playlistTitle }}</p>
+    
+                    </div>
+                    </figure>
+            </div>
+
+            
+        </article>
+
+        <br>
 
         <hr />
 
         <article>
             <h3>Similar Artists</h3>
-            <div class="artists-list">
+            <div class="artists-list d-flex justify-content-start">
                 <div class="artist">
-                    <img src={{ profileImage }} alt={{ alt }}>
+                    <a href={{artist_page}}>
+                        <img class="profileImage" src={{ profileImage }} alt={{ alt }}>
+                    </a>
                     <p>{{ artistName }}</p>
                 </div>
 
                 <div class="artist">
-                    <img src={{ profileImage }} alt={{ alt }}>
+                    <a href={{artist_page}}>
+                        <img class="profileImage" src={{ profileImage }} alt={{ alt }}>
+                    </a>
                     <p>{{ artistName }}</p>
                 </div>
 
                 <div class="artist">
-                    <img src={{ profileImage }} alt={{ alt }}>
+                    <a href={{artist_page}}>
+                        <img class="profileImage" src={{ profileImage }} alt={{ alt }}>
+                    </a>
                     <p>{{ artistName }}</p>
                 </div>
 
                 <div class="artist">
-                    <img src={{ profileImage }} alt={{ alt }}>
+                    <a href={{artist_page}}>
+                        <img class="profileImage" src={{ profileImage }} alt={{ alt }}>
+                    </a>
                     <p>{{ artistName }}</p>
                 </div>
             </div>
@@ -83,12 +218,107 @@
 
         <article>
             <h3>About {{artistName}}</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <p class="d-flex justify-content-start">Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                software like Aldus PageMaker including versions of Lorem Ipsum.</p>
         </article>
 
-        <footer>
-            
+        <footer class="footer d-flex justify-content-around">
+            <p>FSWD 2020 Chris, Don, Jaime</p>
+            <p>British Columbia</p>
         </footer>
+
+        <style>
+            body {
+                color: whitesmoke;
+                background-color: #202020;
+            }
+
+            .main-content {
+                background-color: #202020;
+            }
+
+            .sidebar {
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 200px;
+                background-color: #282828;
+                height: 150%;
+                padding-left: 10px;
+                padding-right: 10px;
+                padding-top: 10px;
+            }
+
+            hr {
+                display: block;
+                height: 1px;
+                border: 0;
+                border-top: 1px solid #484848;
+                margin: 1em 0;
+                padding: 0
+            }
+
+            .main-content {
+                position: absolute;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                width: 85%;
+            }
+
+            input.searchTerm {
+                background-color: #202020;
+                color: whitesmoke;
+                border-radius: 10px;
+            }
+
+            .top-button {
+                margin-right: 40px;
+                margin-top: 20px;
+            }
+
+            .profileImage {
+                border-radius: 50%;
+                height: 250px;
+                margin: 30px;
+            }
+
+            #mainImage {
+                height: 300px;
+            }
+
+            .albumArt {
+                height: 200px;
+                margin-right: 30px;
+            }
+
+            .artist {
+                text-align: center;
+            }
+
+            .footer {
+                background-color: #383838;
+                margin-top: 50px;
+                padding-top: 20px;
+                left: 0;
+            }
+
+            .albums figure img {
+                opacity: 1;
+                -webkit-transition: .3s ease-in-out;
+                transition: .3s ease-in-out;
+            }
+
+            .albums figure:hover img {
+                opacity: .5;
+            }
+        </style>
     </section>
 
 

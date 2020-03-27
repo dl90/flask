@@ -9,10 +9,9 @@ app = Flask(__name__,
 #     return app.send_static_file('index.html')
 
 # passing args to rendering templates
-# @app.route('/<arg>')
-# def indexWithArg(arg):
-#     return render_template("home.html", arg = arg)
-
+@app.route('/<page>')
+def pageRoute(page):
+    return render_template( f'{page}.html', user='bob' )
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
@@ -26,21 +25,46 @@ def login():
 def artists():
     return render_template("artists.html", 
     appName = " Music", 
-    alt = "man", 
+    alt = "name", 
     profileImage = "/css/images/profile_image.jpg",
-    artistName = "Chris",
+    artistName = "ArtistName",
     # albumsList = {{'art': "/css/images/albumImage.jpg", 'title': 'title1'}, {'art': "/css/images/albumImage.jpg", 'title': 'title2'}})
     albumArt = "/css/images/albumImage.jpg",
-    title = "albumTitle"
+    title = "albumTitle",
+    album_page = "albums",
+    playlist_page = "playlists",
+    playlistArt = "/css/images/playlistArt.jpeg",
+    playlistTitle = "Playlist Title"
+
     )
 
 @app.route("/albums")
 def albums():
-    return render_template("albums.html")
+    return render_template("albums.html",
+    appName = " Music",
+    artistName = "ArtistName",
+    albumArt = "/css/images/albumImage.jpg",
+    title = "albumTitle",
+    albumName = "Album Name",
+    artist_page = "artists",
+    songName = "Amazing Song"
+    )
 
 @app.route("/playlists")
 def playlists():
-    return render_template("playlists.html")
+    return render_template("playlists.html",
+    appName = " Music", 
+    profileImage = "/css/images/profile_image.jpg",
+    artistName = "ArtistName",
+    albumArt = "/css/images/albumImage.jpg",
+    title = "albumTitle",
+    album_page = "albums",
+    playlist_page = "playlists",
+    playlistArt = "/css/images/playlistArt.jpeg",
+    playlistTitle = "Playlist Title",
+    songName = "Amazing Song",
+    playlistName = "playlistName"
+    )
 
 
 # Listener
