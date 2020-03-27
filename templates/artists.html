@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="public/css/artists-styles.css">
+    <title>Artist</title>
+</head>
+
+<body>
+    <!-- <header>
+            <h3> {{ appName }}</h3>
+            <div class="search">
+                <i class="fa fa-search"></i>
+                <input type="text" class="searchTerm" placeholder="Search">
+            </div>
+        </div>
+    </header> -->
+    <div class="top-button">
+        <button type="button">Sign In</button>
+    </div>
+
+
+    <section>
+        <img src={{ profileImage }} alt={{ alt }}>
+
+        <h2>{{ artistName }}</h2>
+
+        <hr />
+
+        <article>
+            <h3>Albums</h3>
+            <div class="albums-list">
+                <div class="albums">
+                    <img src={{ albumArt }} alt={{ alt }}>
+                    <p>{{ title }}</p>
+                </div>
+
+                <div class="albums">
+                    <img src={{ albumArt }} alt={{ alt }}>
+                    <p>{{ title }}</p>
+                </div>
+                <!-- {% for item in albumsList %}
+                <div>
+                <img src={{ item.art }} alt={{ alt }}>
+                
+                </div>
+                {% else %}
+                <br>
+                {% endfor %} -->
+               
+            </div>
+        </article>
+
+        <hr />
+
+        <article>
+            <h3>Similar Artists</h3>
+            <div class="artists-list">
+                <div class="artist">
+                    <img src={{ profileImage }} alt={{ alt }}>
+                    <p>{{ artistName }}</p>
+                </div>
+
+                <div class="artist">
+                    <img src={{ profileImage }} alt={{ alt }}>
+                    <p>{{ artistName }}</p>
+                </div>
+
+                <div class="artist">
+                    <img src={{ profileImage }} alt={{ alt }}>
+                    <p>{{ artistName }}</p>
+                </div>
+
+                <div class="artist">
+                    <img src={{ profileImage }} alt={{ alt }}>
+                    <p>{{ artistName }}</p>
+                </div>
+            </div>
+        </article>
+
+        <article>
+            <h3>About {{artistName}}</h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </article>
+
+        <footer>
+            
+        </footer>
+    </section>
+
+
+
+</body>
+
+</html>

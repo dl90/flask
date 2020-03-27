@@ -2,18 +2,19 @@ from typing import List
 from classes.Album import Album
 
 class Artist:
-  def __init__(self, firstName, lastName, album_list, album_art):
+  def __init__(self, firstName, lastName, album_list, album_art, profile_image):
     self.__firstName:str = firstName
     self.__lastName:str = lastName
     self.__album_list:List[Album] = album_list
     self.__album_art:str = album_art
+    self.__profile_image:str = profile_image
 
   @property
   def firstName(self):
       return self.__firstName
 
   @firstName.setter
-  def art(self, input):
+  def firstName(self, input):
       if(not input):
           self.__art = input
 
@@ -38,6 +39,15 @@ class Artist:
   def album_art(self, input):
       if(not input):
           self.__album_art = input
+
+  @property
+  def profile_image(self):
+      return self.__profile_image
+
+  @profile_image.setter
+  def profile_image(self, input):
+      if(not input):
+          self.__profile_image= input
 
   def add_album(self, album): self.__album_list.append(album)
 
