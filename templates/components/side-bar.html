@@ -1,6 +1,5 @@
 <link href='{{ url_for('static', filename='components/side-bar.css') }}' rel='stylesheet'/>
 
-<div class='wrapper'>
 <side-bar>
   <svg class='logo'
     width='120' height='29' viewBox='0 0 120 29' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -15,7 +14,7 @@
   </svg>
   <input class='search' placeholder='Search'/>
   <nav-buttons>
-    <a class='button nav-button'>
+    <a tabindex=0 class='button nav-button'>
       <svg class='icon'
         width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'>
         <rect width='30' height='30' rx='8' fill='url(#paint0_linear)'/>
@@ -31,7 +30,7 @@
       </svg>
       <span>Home</span>
     </a>
-    <a class='button nav-button'>
+    <a tabindex=0 class='button nav-button'>
       <svg class='icon'
         width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'>
         <rect width='30' height='30' rx='8' fill='url(#paint0_linear)'/>
@@ -51,14 +50,13 @@
   </nav-buttons>
   <sb-playlists>
     <span class='label'>Playlists</span>
-    <a class='button'>Pop</a>
-    <a class='button'>Dance</a>
-    <a class='button'>Rap</a>
-    <a class='button'>Faves</a>
-    <a class='button'>Study</a>
-    <a class='button'>Focus</a>
-    <a class='button'>Mood</a>
-    <a class='button'>Popular</a>
+    <a tabindex=0 class='button playlist-button'>Pop</a>
+    <a tabindex=0 class='button playlist-button'>Dance</a>
+    <a tabindex=0 class='button playlist-button'>Rap</a>
+    <a tabindex=0 class='button playlist-button'>Faves</a>
+    <a tabindex=0 class='button playlist-button'>Study</a>
+    <a tabindex=0 class='button playlist-button'>Focus</a>
+    <a tabindex=0 class='button playlist-button'>Mood</a>
+    <a tabindex=0 class='button playlist-button'>Popular</a>
   </sb-playlists>
 </side-bar>
-</div>

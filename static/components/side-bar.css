@@ -1,5 +1,7 @@
 side-bar {
   grid-area: side-bar;
+  position: fixed;
+  width: 260px;
   display: grid;
   grid-template-rows: max-content max-content max-content max-content;
   gap: 2rem;
@@ -7,6 +9,7 @@ side-bar {
   background-color: #2C2C2C;
   height: 100vh;
   font-weight: bold;
+  box-shadow: 0 0 0 1px #555;
 }
 .logo {
   margin: 2rem 0 0 0;
@@ -34,14 +37,14 @@ nav-buttons {
   border: none;
   outline: none;
   background-color: transparent;
-  background-color: rgba(255,255,255,0.1);
+  /* background-color: rgba(255,255,255,0.1); */
   width: 12rem;
   height: 2rem;
   border-radius: 0.5rem;
   font-weight: bold;
   font-size: 0.9rem;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   cursor: pointer;
 }
@@ -50,10 +53,14 @@ nav-buttons {
   margin-right: 0.5rem;
 }
 .button:hover {
-  background-color: rgba(255,255,255,0.2);
+  /* background-color: rgba(255,255,255,0.2); */
+  color: #C1C1C1;
 }
 .button:active {
-  background-color: rgba(255,255,255,0.25);
+  /* background-color: rgba(255,255,255,0.25); */
+}
+.button:focus {
+  background-color: rgba(255,255,255,0.1);
 }
 .nav-button {
   padding-left: 0.1rem;
@@ -62,6 +69,10 @@ nav-buttons {
 sb-playlists {
   display: grid;
   gap: 0.3rem;
+}
+.playlist-button {
+  font-weight: normal;
+  text-indent: 2.5rem;
 }
 .label {
   margin: 0.5rem;
