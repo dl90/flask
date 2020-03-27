@@ -10,9 +10,14 @@ from db.schema import (User, Profile, Playlist, Artist, Album, Song)
 #     return "<h1>Hello world</h1>"
 
 # passing args to rendering templates
-# @app.route('/<page>')
-# def pageRoute(page):
-#     return render_template(f'{page}.html', user='bob')
+@app.route('/<page>')
+def pageRoute(page):
+    return render_template(f'{page}.html', page='home')
+
+
+@app.route('/library')
+def library():
+    return render_template(f'home.html', page='library')
 
 
 # @app.route('/login', methods=["GET", "POST"])
@@ -25,7 +30,7 @@ from db.schema import (User, Profile, Playlist, Artist, Album, Song)
 
 @app.route("/artists")
 def artists():
-    artistName = 'snoop' # hardcoded, passed param from
+    artistName = 'snoop'  # hardcoded, passed param from
     artists = Artist.query.all()
     artist = Artist.query.filter_by(first_name=artistName).first()
 
@@ -34,7 +39,7 @@ def artists():
                            alt="artist image",
                            profileImage="/css/images/profile_image.jpg",
 
-    
+
                            artistName="ArtistName",
                            # albumsList = {{'art': "/css/images/albumImage.jpg", 'title': 'title1'}, {'art': "/css/images/albumImage.jpg", 'title': 'title2'}})
                            albumArt="/css/images/albumImage.jpg",

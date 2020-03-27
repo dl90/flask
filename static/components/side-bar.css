@@ -1,12 +1,15 @@
 side-bar {
   grid-area: side-bar;
+  position: fixed;
+  width: 260px;
   display: grid;
   grid-template-rows: max-content max-content max-content max-content;
   gap: 2rem;
   justify-items: center;
-  background-color: #2C2C2C;
+  background-color: #252526;
   height: 100vh;
   font-weight: bold;
+  box-shadow: 0 0 0 1px #555;
 }
 .logo {
   margin: 2rem 0 0 0;
@@ -23,25 +26,28 @@ form {
   width: 13rem;
   height: 1.7rem;
   box-shadow: 0 0 0 1px #555;
+  outline: none;
+}
+.search:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0,127,244,0.5);
 }
 nav-buttons {
   display: grid;
   gap: 0.3rem;
-
 }
 .button {
   color: #E0E0E0;
   border: none;
   outline: none;
   background-color: transparent;
-  background-color: rgba(255,255,255,0.1);
+  /* background-color: rgba(255,255,255,0.1); */
   width: 12rem;
   height: 2rem;
   border-radius: 0.5rem;
   font-weight: bold;
   font-size: 0.9rem;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   cursor: pointer;
 }
@@ -50,18 +56,28 @@ nav-buttons {
   margin-right: 0.5rem;
 }
 .button:hover {
-  background-color: rgba(255,255,255,0.2);
+  /* background-color: rgba(255,255,255,0.2); */
+  color: #C1C1C1;
 }
-.button:active {
+/* .button:active {
   background-color: rgba(255,255,255,0.25);
+} */
+.button:focus {
+  background-color: rgba(255,255,255,0.1);
 }
 .nav-button {
   padding-left: 0.1rem;
   justify-content: flex-start;
+  text-decoration: none;
 }
 sb-playlists {
   display: grid;
   gap: 0.3rem;
+}
+.playlist-button {
+  padding-left: 0.5rem;
+  font-weight: normal;
+  text-indent: 2.5rem;
 }
 .label {
   margin: 0.5rem;
