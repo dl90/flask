@@ -25,12 +25,16 @@ from db.schema import (User, Profile, Playlist, Artist, Album, Song)
 
 @app.route("/artists")
 def artists():
+    artistName = 'snoop' # hardcoded, passed param from
     artists = Artist.query.all()
-    print(artists)
+    artist = Artist.query.filter_by(first_name=artistName).first()
+
     return render_template("artists.html",
                            appName=" Music",
-                           alt="name",
+                           alt="artist image",
                            profileImage="/css/images/profile_image.jpg",
+
+    
                            artistName="ArtistName",
                            # albumsList = {{'art': "/css/images/albumImage.jpg", 'title': 'title1'}, {'art': "/css/images/albumImage.jpg", 'title': 'title2'}})
                            albumArt="/css/images/albumImage.jpg",
@@ -38,7 +42,8 @@ def artists():
                            album_page="albums",
                            playlist_page="playlists",
                            playlistArt="/css/images/playlistArt.jpeg",
-                           playlistTitle="Playlist Title"
+                           playlistTitle="Playlist Title",
+                           artists=artists
                            )
 
 

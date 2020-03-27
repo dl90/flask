@@ -21,7 +21,6 @@
             </div>
             <br>
 
-
             <nav-buttons>
 
                 <a class='button nav-button d-flex flex-column'>
@@ -73,11 +72,7 @@
             </nav-buttons>
             <hr />
         </div>
-
-
     </header>
-
-
 
 
     <section class="main-content">
@@ -100,19 +95,9 @@
                             <img class="albumArt " src={{ albumArt }} alt={{ alt }}>
                         </a>
                         <p>{{ title }}</p>
-
+                    </figure>
                 </div>
-                </figure>
 
-
-                <div class="albums">
-                    <figure>
-                        <a href={{album_page}}>
-                            <img class="albumArt" src={{ albumArt }} alt={{ alt }}>
-                        </a>
-                        <p>{{ title }}</p>
-                </div>
-                </figure>
                 <!-- {% for item in albumsList %}
                 <div>
                 <img src={{ item.art }} alt={{ alt }}>
@@ -167,12 +152,12 @@
                                 <img class="albumArt " src={{ playlistArt }} alt={{ alt }}>
                             </a>
                             <p>{{ playlistTitle }}</p>
-    
+
                     </div>
                     </figure>
-            </div>
+                </div>
 
-            
+
         </article>
 
         <br>
@@ -182,33 +167,14 @@
         <article>
             <h3>Similar Artists</h3>
             <div class="artists-list d-flex justify-content-start">
+                {% for artist in artists: %}
                 <div class="artist">
                     <a href={{artist_page}}>
-                        <img class="profileImage" src={{ profileImage }} alt={{ alt }}>
+                        <img class="profileImage" src={{ artist.album_art }} alt={{ alt }}>
                     </a>
-                    <p>{{ artistName }}</p>
+                    <p>{{ artist.first_name + " " + artist.last_name }}</p>
                 </div>
-
-                <div class="artist">
-                    <a href={{artist_page}}>
-                        <img class="profileImage" src={{ profileImage }} alt={{ alt }}>
-                    </a>
-                    <p>{{ artistName }}</p>
-                </div>
-
-                <div class="artist">
-                    <a href={{artist_page}}>
-                        <img class="profileImage" src={{ profileImage }} alt={{ alt }}>
-                    </a>
-                    <p>{{ artistName }}</p>
-                </div>
-
-                <div class="artist">
-                    <a href={{artist_page}}>
-                        <img class="profileImage" src={{ profileImage }} alt={{ alt }}>
-                    </a>
-                    <p>{{ artistName }}</p>
-                </div>
+                {% endfor %}
             </div>
         </article>
 
