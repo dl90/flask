@@ -3,11 +3,23 @@ app = Flask(__name__,
             static_url_path='',
             static_folder='public',
             template_folder='templates')
+
+# do not format
 from db.schema import (User, Profile, Playlist, Artist, Album, Song)
+
 
 # @app.route('/')
 # def home():
 #     return "<h1>Hello world</h1>"
+
+
+# @app.route('/login', methods=["GET", "POST"])
+# def login():
+#     if request.method == 'POST':
+#         return "do_the_login"
+#     else:
+#         return "show_the_login_form"
+
 
 # passing args to rendering templates
 @app.route('/<page>')
@@ -18,14 +30,6 @@ def pageRoute(page):
 @app.route('/library')
 def library():
     return render_template(f'home.html', page='library')
-
-
-# @app.route('/login', methods=["GET", "POST"])
-# def login():
-#     if request.method == 'POST':
-#         return "do_the_login"
-#     else:
-#         return "show_the_login_form"
 
 
 @app.route("/artists")
