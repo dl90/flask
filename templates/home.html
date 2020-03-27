@@ -13,6 +13,9 @@
                Cantarell, 'Open Sans', 'Helvetica Neue',
                sans-serif;
     }
+    body::-webkit-scrollbar {
+      display: none;
+    }
     slate-box {
       display:grid;
       grid-template-columns: 260px 1fr;
@@ -24,7 +27,11 @@
 <body>
   <slate-box>
     {% include 'components/side-bar.html' %}
-    {% include 'components/main-layout.html' %}
+    {% if page == 'home' %}
+      {% include 'components/main-layout.html' %}
+    {% else %}
+      {% include 'components/library-layout.html' %}
+    {% endif %}
   </slate-box>
 </body>
 </html>
