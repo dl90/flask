@@ -6,7 +6,7 @@ side-bar {
   grid-template-rows: max-content max-content max-content max-content;
   gap: 2rem;
   justify-items: center;
-  background-color: #2C2C2C;
+  background-color: #252526;
   height: 100vh;
   font-weight: bold;
   box-shadow: 0 0 0 1px #555;
@@ -26,6 +26,10 @@ form {
   width: 13rem;
   height: 1.7rem;
   box-shadow: 0 0 0 1px #555;
+  outline: none;
+}
+.search:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0,127,244,0.5);
 }
 nav-buttons {
   display: grid;
@@ -64,6 +68,7 @@ nav-buttons {
 .nav-button {
   padding-left: 0.1rem;
   justify-content: flex-start;
+  text-decoration: none;
 }
 sb-playlists {
   display: grid;
