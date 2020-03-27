@@ -1,0 +1,62 @@
+main-layout {
+  grid-area: main-layout;
+  padding: 1rem 0 10rem 2rem;
+  display: grid;
+  grid-template-rows: repeat( auto-fit, max-content );
+  background-color: #222;
+}
+.header {
+  font-size: 3rem;
+  margin: 0;
+}
+.login-button {
+  margin-right: 2rem;
+  width: 5rem;
+  background-color: #007FF4;
+  justify-content: center;
+  justify-self: flex-end;
+}
+.login-button:hover {
+  background-color: #3FA3FF;
+}
+.login-button:active {
+  background-color: #47A7FF;
+}
+row-break {
+  height: 1px;
+  width: 80vw;
+  background-color: #555;
+  margin: 2rem 0 0.5rem 0;
+}
+album-row-container,
+playlist-row-container {
+  display: grid;
+  /* width: 80vw; */
+}
+album-row {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 2rem;
+  overflow-x: scroll;
+}
+album-row::-webkit-scrollbar {
+  display: none;
+}
+album-container {
+  transition: filter 0.1s ease-in;
+}
+album-container:hover {
+  cursor: pointer;
+  filter: brightness(0.7);
+}
+.row-label {
+  margin: 0 0 1rem 0;
+  color: #E0E0E0;
+  font-size: 1.2rem;
+}
+.cover {
+  width: 13rem;
+  height: 13rem;
+  object-fit: cover;
+  border-radius: 0.3rem;
+}
