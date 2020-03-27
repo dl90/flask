@@ -8,7 +8,11 @@ def index():
 # passing args to rendering templates
 @app.route('/<page>')
 def pageRoute(page):
-    return render_template( f'{page}.html', user='bob' )
+    return render_template( f'{page}.html', page='home' )
+
+@app.route('/library')
+def library():
+    return render_template( f'home.html', page='library' )
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
