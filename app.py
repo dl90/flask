@@ -6,9 +6,9 @@ def index():
     return "test"
 
 # passing args to rendering templates
-@app.route('/<arg>')
-def indexWithArg(arg):
-    return render_template("home.html", arg = arg)
+@app.route('/<page>')
+def pageRoute(page):
+    return render_template( f'{page}.html', user='bob' )
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
@@ -18,4 +18,4 @@ def login():
         return "show_the_login_form"
 
 if __name__ == "__main__":
-    app.run(port=9999, debug=True)
+    app.run(port=7000, debug=True)
