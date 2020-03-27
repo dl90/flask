@@ -30,7 +30,6 @@ form {
 nav-buttons {
   display: grid;
   gap: 0.3rem;
-
 }
 .button {
   color: #E0E0E0;
@@ -71,6 +70,7 @@ sb-playlists {
   gap: 0.3rem;
 }
 .playlist-button {
+  padding-left: 0.5rem;
   font-weight: normal;
   text-indent: 2.5rem;
 }
