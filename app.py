@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
-from util.forms import LoginForm, NewUserForm
+from util.forms import LoginForm, NewUserForm, AddArtistForm
 from flask_bcrypt import Bcrypt
 from datetime import timedelta
 from jinja2 import FileSystemLoader
@@ -24,6 +24,15 @@ from db.schema import User, Profile, Playlist, Artist, Album, Song, db
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+def api_search(query):
+    api = "https://deezerdevs-deezer.p.rapidapi.com/search"
+    headers = {'x-rapidapi-key': "c037579dddmsh470ab55c12a8ddap18dc96jsn4c0f53fa75cf"}
+    params = {"q": query}
+    response = requests.request("GET", api, headers=headers, params=params)
+    return response.json()
+
+# api = api_search("Kanye")
+# print(api)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -123,28 +132,49 @@ def library():
     return render_template('home.html', page='library')
 
 
-@app.route("/artists")
+@app.route("/artists", methods=["GET", "POST"])
 @login_required
 def artists():
-    artists = Artist.query.all()
+    form = AddArtistForm()
+    if request.method == "GET":
+        artists = Artist.query.all()
+        return render_template("artists.html",
+                                form=form,
 
-    return render_template("artists.html",
-                           appName=" Music",
-                           alt="artist image",
-                           profileImage="/css/images/profile_image.jpg",
-
-
-                           artistName="ArtistName",
-                           # albumsList = {{'art': "/css/images/albumImage.jpg", 'title': 'title1'}, {'art': "/css/images/albumImage.jpg", 'title': 'title2'}})
-                           albumArt="/css/images/albumImage.jpg",
-                           title="albumTitle",
-                           album_page="albums",
-                           playlist_page="playlists",
-                           playlistArt="/css/images/playlistArt.jpeg",
-                           playlistTitle="Playlist Title",
-                           artists=artists
-                           )
-
+                                appName=" Music",
+                                alt="artist image",
+                                profileImage="/css/images/profile_image.jpg",
+                                artistName="ArtistName",
+                                albumArt="/css/images/albumImage.jpg",
+                                title="albumTitle",
+                                album_page="albums",
+                                playlist_page="playlists",
+                                playlistArt="/css/images/playlistArt.jpeg",
+                                playlistTitle="Playlist Title",
+                                artists=artists
+                                )
+    if request.method == 'POST' and form.validate_on_submit():
+        artist = False
+        try:
+            artist = Artist.query.filter_by(first_name=form.first_name.data, last_name=form.last_name.data).first()
+        except:
+            flash("Something is wrong with the database, contact your admin", "error")
+            return redirect(url_for('landing_page'))
+        if not artist:
+            print(form.data)
+            # new_artist = form.populate_obj(Artist())
+            new_artist = Artist(first_name=form.first_name.data, last_name=form.last_name.data, display_pic=form.display_pic.data)
+            db.session.add(new_artist)
+            try:
+                db.session.commit()
+                flash(f"{new_artist} added", "success")
+                return redirect(url_for("artists", form=form))
+            except:
+                flash("Something is wrong with the database, contact your admin", "error")
+                return redirect(url_for("artists", form=form))
+    else:
+        flash(form.errors, "error")
+        return redirect(url_for("artists", form=form))
 
 @app.route("/albums")
 @login_required

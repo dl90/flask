@@ -12,12 +12,12 @@
 
   {% include "auth/util/flash.html" ignore missing %}
 
-  <form class="sign-in" action="{{ url_for('sign_up') }}" method="POST">
+  <form class="sign-up" action="{{ url_for('sign_up') }}" method="POST">
     {{ form.csrf_token }}
     {{ form.username.label }} {{ form.username }}
     {{ form.password_1.label }} {{ form.password_1 }}
     {{ form.password_2.label }} {{ form.password_2 }}
-    <input type="submit" value="Sign-in">
+    <input type="submit" value="Sign-up">
   </form>
 </body>
 

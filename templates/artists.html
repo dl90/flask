@@ -71,6 +71,19 @@
 
 
   <section class="main-content">
+
+    <!-- add artist -->
+    {% include "auth/util/flash.html" ignore missing %}
+
+    <form class="add-artist" action="{{ url_for('artists') }}" method="POST">
+      {{ form.csrf_token }}
+      {{ form.first_name.label }} {{ form.first_name }}
+      {{ form.last_name.label }} {{ form.last_name }}
+      {{ form.display_pic.label }} {{ form.display_pic }}
+      <input type="submit" value="Add Artist">
+    </form>
+    <!-- add artist -->
+
     <div class="top-button d-flex flex-row-reverse">
       <button type="button" class='btn btn-primary'>Sign In</button>
     </div>

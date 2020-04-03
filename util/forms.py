@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
 from werkzeug.utils import secure_filename
 from wtforms import StringField, PasswordField
-from wtforms.validators import InputRequired, Email, Length, EqualTo
+from wtforms.validators import InputRequired, Email, Length, EqualTo, URL
 
 
 class LoginForm(FlaskForm):
@@ -13,3 +13,8 @@ class NewUserForm(FlaskForm):
     username = StringField("Username", validators=[InputRequired()])
     password_1 = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=-1, message="Password must be 8 characters long.")])
     password_2 = PasswordField("Password", validators=[InputRequired(), EqualTo("password_1", message="Passwords do not match")])
+
+class AddArtistForm(FlaskForm):
+    first_name = StringField("First Name", validators=[InputRequired(), Length(min=1, max=-1, message="Must be greater than 1 character long.")])
+    last_name = StringField("Last Name", validators=[InputRequired(), Length(min=1, max=-1, message="Must be greater than 1 character long.")])
+    display_pic = StringField("Display Picture (URL)", validators=[URL(require_tld=False, message="Valid URL required.")])

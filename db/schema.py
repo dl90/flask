@@ -92,15 +92,15 @@ class Artist(db.Model):
     first_name    = db.Column(db.String(255), nullable=False)
     last_name     = db.Column(db.String(255), nullable=False)
     album_list    = db.Column(db.PickleType)
-    album_art     = db.Column(db.String(255))
-    rating          = db.Column(db.Integer)
+    display_pic   = db.Column(db.String(255))
+    rating        = db.Column(db.Integer)
     creation_date = db.Column(db.DateTime, default=date.today())
 
-    def __init__(self, first_name, last_name, album_list=None, album_art=None, rating=None):
+    def __init__(self, first_name, last_name, album_list=None, display_pic=None, rating=None):
         self.first_name    = first_name
         self.last_name     = last_name
         self.album_list    = album_list
-        self.album_art     = album_art
+        self.display_pic   = display_pic
         self.rating        = rating
         self.creation_date = date.today()
 
