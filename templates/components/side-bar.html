@@ -1,48 +1,51 @@
-<link href='{{ url_for('static', filename='components/side-bar.css') }}' rel='stylesheet'/>
+<link href='{{ url_for('static', filename='components/side-bar.css') }}' rel='stylesheet' />
 
 <side-bar>
-  <svg class='logo'
-    width='120' height='29' viewBox='0 0 120 29' fill='none' xmlns='http://www.w3.org/2000/svg'>
+  <svg class='logo' width='120' height='29' viewBox='0 0 120 29' fill='none' xmlns='http://www.w3.org/2000/svg'>
     <g clip-path='url(#clip0)'>
-    <path d='M50.2437 28.5484V9.02602H50.1165L42.2615 28.5484H39.263L31.3893 9.02602H31.2635V28.5484H27.5796V2.02265H32.2567L40.69 23.1614H40.8345L49.249 2.02409H53.9449V28.5499H50.2437V28.5484ZM74.3145 28.5484H70.5757V25.2766H70.4861C69.4379 27.5928 67.5063 28.8968 64.5989 28.8968C60.4639 28.8968 57.9338 26.1585 57.9338 21.7287V9.20963H61.8345V20.9566C61.8345 23.8973 63.208 25.4776 65.8972 25.4776C68.7164 25.4776 70.4138 23.4925 70.4138 20.4781V9.20963H74.3131V28.5484H74.3145ZM85.0046 8.85975C89.4287 8.85975 92.3 11.361 92.4273 14.9263H88.7608C88.5439 13.0525 87.1892 11.8757 85.0046 11.8757C82.8909 11.8757 81.4827 12.9224 81.4827 14.4679C81.4827 15.681 82.3502 16.5065 84.4075 16.985L87.4957 17.7022C91.3791 18.6217 92.8596 20.1658 92.8596 22.959C92.8596 26.4896 89.6268 28.9156 85.1492 28.9156C80.3998 28.9156 77.5444 26.5446 77.1844 22.8679H81.049C81.4104 24.8891 82.7651 25.8824 85.1492 25.8824C87.4957 25.8824 88.9415 24.8891 88.9415 23.3089C88.9415 22.0583 88.2374 21.3238 86.1598 20.8453L83.0716 20.1108C79.46 19.265 77.6716 17.4997 77.6716 14.6891C77.6716 11.2323 80.634 8.85975 85.0046 8.85975ZM95.5661 4.10024C95.5661 2.83084 96.5781 1.82024 97.8229 1.82024C99.0692 1.82024 100.064 2.83229 100.064 4.10024C100.064 5.34939 99.0692 6.37879 97.8229 6.37879C97.2223 6.37383 96.648 6.13144 96.2254 5.70454C95.8029 5.27764 95.5663 4.70091 95.5675 4.10024H95.5661ZM95.8726 9.20963H99.7733V28.5484H95.8726V9.20963ZM116.242 15.8646C115.845 13.8058 114.328 12.1691 111.782 12.1691C108.766 12.1691 106.78 14.7238 106.78 18.8776C106.78 23.1253 108.783 25.5889 111.818 25.5889C114.218 25.5889 115.791 24.2472 116.242 22.0034H120C119.585 26.1209 116.352 28.9156 111.783 28.9156C106.347 28.9156 102.808 25.1277 102.808 18.879C102.808 12.7388 106.347 8.85975 111.747 8.85975C116.641 8.85975 119.621 12.0593 119.964 15.8646H116.244H116.242ZM15.649 4.6106C14.6399 5.81638 13.0394 6.77349 11.4375 6.6318C11.2278 5.00096 12.0302 3.26313 12.9353 2.20048C13.943 0.957108 15.6837 0.0722891 17.1107 0C17.2857 1.70313 16.6249 3.36867 15.6505 4.61204L15.649 4.6106ZM17.0934 6.95132C17.9955 7.02216 20.5994 7.30409 22.2664 9.81397C22.1276 9.92096 19.1767 11.653 19.2114 15.2935C19.2461 19.6453 22.9604 21.094 22.9951 21.1301C22.9604 21.2371 22.4066 23.1817 21.0519 25.1956C19.8707 26.9653 18.6563 28.6973 16.7117 28.7335C14.8365 28.7682 14.2105 27.6014 12.0592 27.6014C9.9064 27.6014 9.21098 28.6973 7.44134 28.7682C5.56616 28.8376 4.14496 26.893 2.96376 25.1248C0.531951 21.5537 -1.30708 15.0477 1.19267 10.6626C2.40713 8.47084 4.6293 7.09156 7.02496 7.05542C8.86543 7.02216 10.5671 8.29445 11.6775 8.29445C12.7893 8.29445 14.7671 6.80963 17.0934 6.94987V6.95132Z' fill='white'/>
+      <path
+        d='M50.2437 28.5484V9.02602H50.1165L42.2615 28.5484H39.263L31.3893 9.02602H31.2635V28.5484H27.5796V2.02265H32.2567L40.69 23.1614H40.8345L49.249 2.02409H53.9449V28.5499H50.2437V28.5484ZM74.3145 28.5484H70.5757V25.2766H70.4861C69.4379 27.5928 67.5063 28.8968 64.5989 28.8968C60.4639 28.8968 57.9338 26.1585 57.9338 21.7287V9.20963H61.8345V20.9566C61.8345 23.8973 63.208 25.4776 65.8972 25.4776C68.7164 25.4776 70.4138 23.4925 70.4138 20.4781V9.20963H74.3131V28.5484H74.3145ZM85.0046 8.85975C89.4287 8.85975 92.3 11.361 92.4273 14.9263H88.7608C88.5439 13.0525 87.1892 11.8757 85.0046 11.8757C82.8909 11.8757 81.4827 12.9224 81.4827 14.4679C81.4827 15.681 82.3502 16.5065 84.4075 16.985L87.4957 17.7022C91.3791 18.6217 92.8596 20.1658 92.8596 22.959C92.8596 26.4896 89.6268 28.9156 85.1492 28.9156C80.3998 28.9156 77.5444 26.5446 77.1844 22.8679H81.049C81.4104 24.8891 82.7651 25.8824 85.1492 25.8824C87.4957 25.8824 88.9415 24.8891 88.9415 23.3089C88.9415 22.0583 88.2374 21.3238 86.1598 20.8453L83.0716 20.1108C79.46 19.265 77.6716 17.4997 77.6716 14.6891C77.6716 11.2323 80.634 8.85975 85.0046 8.85975ZM95.5661 4.10024C95.5661 2.83084 96.5781 1.82024 97.8229 1.82024C99.0692 1.82024 100.064 2.83229 100.064 4.10024C100.064 5.34939 99.0692 6.37879 97.8229 6.37879C97.2223 6.37383 96.648 6.13144 96.2254 5.70454C95.8029 5.27764 95.5663 4.70091 95.5675 4.10024H95.5661ZM95.8726 9.20963H99.7733V28.5484H95.8726V9.20963ZM116.242 15.8646C115.845 13.8058 114.328 12.1691 111.782 12.1691C108.766 12.1691 106.78 14.7238 106.78 18.8776C106.78 23.1253 108.783 25.5889 111.818 25.5889C114.218 25.5889 115.791 24.2472 116.242 22.0034H120C119.585 26.1209 116.352 28.9156 111.783 28.9156C106.347 28.9156 102.808 25.1277 102.808 18.879C102.808 12.7388 106.347 8.85975 111.747 8.85975C116.641 8.85975 119.621 12.0593 119.964 15.8646H116.244H116.242ZM15.649 4.6106C14.6399 5.81638 13.0394 6.77349 11.4375 6.6318C11.2278 5.00096 12.0302 3.26313 12.9353 2.20048C13.943 0.957108 15.6837 0.0722891 17.1107 0C17.2857 1.70313 16.6249 3.36867 15.6505 4.61204L15.649 4.6106ZM17.0934 6.95132C17.9955 7.02216 20.5994 7.30409 22.2664 9.81397C22.1276 9.92096 19.1767 11.653 19.2114 15.2935C19.2461 19.6453 22.9604 21.094 22.9951 21.1301C22.9604 21.2371 22.4066 23.1817 21.0519 25.1956C19.8707 26.9653 18.6563 28.6973 16.7117 28.7335C14.8365 28.7682 14.2105 27.6014 12.0592 27.6014C9.9064 27.6014 9.21098 28.6973 7.44134 28.7682C5.56616 28.8376 4.14496 26.893 2.96376 25.1248C0.531951 21.5537 -1.30708 15.0477 1.19267 10.6626C2.40713 8.47084 4.6293 7.09156 7.02496 7.05542C8.86543 7.02216 10.5671 8.29445 11.6775 8.29445C12.7893 8.29445 14.7671 6.80963 17.0934 6.94987V6.95132Z'
+        fill='white' />
     </g>
     <defs>
-    <clipPath id='clip0'>
-    <rect width='120' height='28.9156' fill='white'/>
-    </clipPath>
+      <clipPath id='clip0'>
+        <rect width='120' height='28.9156' fill='white' />
+      </clipPath>
     </defs>
   </svg>
-  <input class='search' placeholder='Search'/>
+  <input class='search' placeholder='Search' />
   <nav-buttons>
     <a href='/home' tabindex=0 class='button nav-button'>
-      <svg class='icon'
-        width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'>
-        <rect width='30' height='30' rx='8' fill='url(#paint0_linear)'/>
-        <path d='M11 21V8L23 6V19' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
-        <path d='M8 24C9.65685 24 11 22.6569 11 21C11 19.3431 9.65685 18 8 18C6.34315 18 5 19.3431 5 21C5 22.6569 6.34315 24 8 24Z' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
-        <path d='M20 22C21.6569 22 23 20.6569 23 19C23 17.3431 21.6569 16 20 16C18.3431 16 17 17.3431 17 19C17 20.6569 18.3431 22 20 22Z' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+      <svg class='icon' width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'>
+        <rect width='30' height='30' rx='8' fill='url(#paint0_linear)' />
+        <path d='M11 21V8L23 6V19' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' />
+        <path
+          d='M8 24C9.65685 24 11 22.6569 11 21C11 19.3431 9.65685 18 8 18C6.34315 18 5 19.3431 5 21C5 22.6569 6.34315 24 8 24Z'
+          stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' />
+        <path
+          d='M20 22C21.6569 22 23 20.6569 23 19C23 17.3431 21.6569 16 20 16C18.3431 16 17 17.3431 17 19C17 20.6569 18.3431 22 20 22Z'
+          stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' />
         <defs>
-        <linearGradient id='paint0_linear' x1='15' y1='0' x2='15' y2='30' gradientUnits='userSpaceOnUse'>
-        <stop stop-color='#EB0038'/>
-        <stop offset='1' stop-color='#D70074'/>
-        </linearGradient>
+          <linearGradient id='paint0_linear' x1='15' y1='0' x2='15' y2='30' gradientUnits='userSpaceOnUse'>
+            <stop stop-color='#EB0038' />
+            <stop offset='1' stop-color='#D70074' />
+          </linearGradient>
         </defs>
       </svg>
       <span>Home</span>
     </a>
     <a href='/library' tabindex=0 class='button nav-button'>
-      <svg class='icon'
-        width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'>
-        <rect width='30' height='30' rx='8' fill='url(#paint0_linear)'/>
-        <path d='M13 6H6V13H13V6Z' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
-        <path d='M24 6H17V13H24V6Z' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
-        <path d='M24 17H17V24H24V17Z' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
-        <path d='M13 17H6V24H13V17Z' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>
+      <svg class='icon' width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'>
+        <rect width='30' height='30' rx='8' fill='url(#paint0_linear)' />
+        <path d='M13 6H6V13H13V6Z' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' />
+        <path d='M24 6H17V13H24V6Z' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' />
+        <path d='M24 17H17V24H24V17Z' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' />
+        <path d='M13 17H6V24H13V17Z' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' />
         <defs>
-        <linearGradient id='paint0_linear' x1='15' y1='0' x2='15' y2='30' gradientUnits='userSpaceOnUse'>
-        <stop stop-color='#EB0038'/>
-        <stop offset='1' stop-color='#D70074'/>
-        </linearGradient>
+          <linearGradient id='paint0_linear' x1='15' y1='0' x2='15' y2='30' gradientUnits='userSpaceOnUse'>
+            <stop stop-color='#EB0038' />
+            <stop offset='1' stop-color='#D70074' />
+          </linearGradient>
         </defs>
       </svg>
       <span>Library</span>
@@ -51,35 +54,99 @@
   <sb-playlists>
     <span class='label'>Playlists</span>
     <a tabindex=0 class='button playlist-button'>
-      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+        <line x1="8" y1="6" x2="21" y2="6"></line>
+        <line x1="8" y1="12" x2="21" y2="12"></line>
+        <line x1="8" y1="18" x2="21" y2="18"></line>
+        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+      </svg>
       Pop
     </a>
     <a tabindex=0 class='button playlist-button'>
-      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+        <line x1="8" y1="6" x2="21" y2="6"></line>
+        <line x1="8" y1="12" x2="21" y2="12"></line>
+        <line x1="8" y1="18" x2="21" y2="18"></line>
+        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+      </svg>
       Dance
     </a>
     <a tabindex=0 class='button playlist-button'>
-      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+        <line x1="8" y1="6" x2="21" y2="6"></line>
+        <line x1="8" y1="12" x2="21" y2="12"></line>
+        <line x1="8" y1="18" x2="21" y2="18"></line>
+        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+      </svg>
       Rap
     </a>
     <a tabindex=0 class='button playlist-button'>
-      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+        <line x1="8" y1="6" x2="21" y2="6"></line>
+        <line x1="8" y1="12" x2="21" y2="12"></line>
+        <line x1="8" y1="18" x2="21" y2="18"></line>
+        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+      </svg>
       Faves
     </a>
     <a tabindex=0 class='button playlist-button'>
-      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+        <line x1="8" y1="6" x2="21" y2="6"></line>
+        <line x1="8" y1="12" x2="21" y2="12"></line>
+        <line x1="8" y1="18" x2="21" y2="18"></line>
+        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+      </svg>
       Study
     </a>
     <a tabindex=0 class='button playlist-button'>
-      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+        <line x1="8" y1="6" x2="21" y2="6"></line>
+        <line x1="8" y1="12" x2="21" y2="12"></line>
+        <line x1="8" y1="18" x2="21" y2="18"></line>
+        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+      </svg>
       Focus
     </a>
     <a tabindex=0 class='button playlist-button'>
-      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+        <line x1="8" y1="6" x2="21" y2="6"></line>
+        <line x1="8" y1="12" x2="21" y2="12"></line>
+        <line x1="8" y1="18" x2="21" y2="18"></line>
+        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+      </svg>
       Mood
     </a>
     <a tabindex=0 class='button playlist-button'>
-      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+      <svg class='icon' viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
+        <line x1="8" y1="6" x2="21" y2="6"></line>
+        <line x1="8" y1="12" x2="21" y2="12"></line>
+        <line x1="8" y1="18" x2="21" y2="18"></line>
+        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+      </svg>
       Popular
     </a>
   </sb-playlists>

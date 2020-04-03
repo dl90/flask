@@ -59,9 +59,9 @@ nav-buttons {
   /* background-color: rgba(255,255,255,0.2); */
   color: #C1C1C1;
 }
-.button:active {
-  /* background-color: rgba(255,255,255,0.25); */
-}
+/* .button:active {
+  background-color: rgba(255,255,255,0.25);
+} */
 .button:focus {
   background-color: rgba(255,255,255,0.1);
 }

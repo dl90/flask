@@ -3,6 +3,7 @@ import datetime
 from classes.Song import Song
 from classes.Artist import Artist
 
+
 class Album:
     def __init__(self, title, artist, art, song_list, release_date=(datetime.datetime.now())):
         self.__title: str = title

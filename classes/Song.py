@@ -26,7 +26,7 @@ class Song:
 
     @coverArt.setter
     def coverArt(self, input):
-        if (not input):  #if (input) ?
+        if (not input):  # if (input) ?
             self.__coverArt = input
 
     @property
@@ -44,7 +44,7 @@ class Song:
 
     @lyrics.setter
     def lyrics(self, input):
-        if (not input):  #if (input) ?
+        if (not input):  # if (input) ?
             self.__lyrics = input
 
     @property
