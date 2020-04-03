@@ -14,6 +14,9 @@ class NewUserForm(FlaskForm):
     password_1 = PasswordField("Password", validators=[InputRequired(), Length(min=8, max=-1, message="Password must be 8 characters long.")])
     password_2 = PasswordField("Password", validators=[InputRequired(), EqualTo("password_1", message="Passwords do not match")])
 
+class SearchForm(FlaskForm):
+    query = StringField("Search", validators=[InputRequired(), Length(min=2, max=30, message="Must be greater than 2 character long.")])
+
 class AddArtistForm(FlaskForm):
     first_name = StringField("First Name", validators=[InputRequired(), Length(min=1, max=-1, message="Must be greater than 1 character long.")])
     last_name = StringField("Last Name", validators=[InputRequired(), Length(min=1, max=-1, message="Must be greater than 1 character long.")])

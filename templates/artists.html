@@ -84,6 +84,13 @@
     </form>
     <!-- add artist -->
 
+    <!-- search form -->
+    <form class="search" action="{{ url_for('search') }}" method="POST">
+      {{ search_form.csrf_token }}
+      {{ search_form.query.label }} {{ search_form.query }}
+      <input type="submit" value="Search">
+    </form>
+
     <div class="top-button d-flex flex-row-reverse">
       <button type="button" class='btn btn-primary'>Sign In</button>
     </div>

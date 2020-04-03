@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
-from util.forms import LoginForm, NewUserForm, AddArtistForm
+from util.forms import LoginForm, NewUserForm, SearchForm, AddArtistForm
 from flask_bcrypt import Bcrypt
 from datetime import timedelta
 from jinja2 import FileSystemLoader
@@ -30,9 +30,6 @@ def api_search(query):
     params = {"q": query}
     response = requests.request("GET", api, headers=headers, params=params)
     return response.json()
-
-# api = api_search("Kanye")
-# print(api)
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -69,13 +66,13 @@ def login():
                 return redirect(url_for('home'))
             else:
                 flash("Incorrect username or password", "error")
-                return redirect(url_for('login', form=form))
+                return redirect(url_for('login'))
         else:
             flash("Incorrect username or password", "error")
-            return redirect(url_for('login', form=form))
+            return redirect(url_for('login'))
     else:
         flash(form.errors, "error")
-        return redirect(url_for('login', form=form))
+        return redirect(url_for('login'))
 
 
 @app.route('/logout')
@@ -111,10 +108,10 @@ def sign_up():
                 return redirect(url_for("landing_page"))
         else:
             flash("Please chose another username", "info")
-            return redirect(url_for("sign_up", form=form))
+            return redirect(url_for("sign_up"))
     else:
         flash(form.errors, "error")
-        return redirect(url_for("sign_up", form=form))
+        return redirect(url_for("sign_up"))
 
 
 @app.route("/home")
@@ -132,13 +129,36 @@ def library():
     return render_template('home.html', page='library')
 
 
+@app.route('/search', methods=["POST"])
+@login_required
+def search():
+    search_form = SearchForm()
+
+    if request.method == 'POST' and search_form.validate_on_submit():
+        results = False
+        try:
+            results = api_search(search_form.query.data)
+        except:
+            flash("Something went wrong with the search API, contact your admin", "error")
+            artists = Artist.query.all()
+            return redirect(url_for('artists'))
+        if results:
+            print(results)
+            return redirect(url_for('artists'))
+    else:
+        flash(search_form.errors, "error")
+        return redirect(url_for("artists"))
+
+
 @app.route("/artists", methods=["GET", "POST"])
 @login_required
 def artists():
     form = AddArtistForm()
+    search_form = SearchForm()
     if request.method == "GET":
         artists = Artist.query.all()
         return render_template("artists.html",
+                                search_form=search_form,
                                 form=form,
 
                                 appName=" Music",
@@ -168,13 +188,13 @@ def artists():
             try:
                 db.session.commit()
                 flash(f"{new_artist} added", "success")
-                return redirect(url_for("artists", form=form))
+                return redirect(url_for("artists"))
             except:
                 flash("Something is wrong with the database, contact your admin", "error")
-                return redirect(url_for("artists", form=form))
+                return redirect(url_for("artists"))
     else:
         flash(form.errors, "error")
-        return redirect(url_for("artists", form=form))
+        return redirect(url_for("artists"))
 
 @app.route("/albums")
 @login_required
