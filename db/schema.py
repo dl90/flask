@@ -1,15 +1,16 @@
 from app import app
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import (Text)
+from sqlalchemy import Text
 from sqlalchemy.orm import relationship
 from datetime import date
+from flask_login import UserMixin
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/database.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'User'
 
     id              = db.Column(db.Integer, primary_key=True)
