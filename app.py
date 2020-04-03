@@ -1,6 +1,14 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
-from flask_login import LoginManager, login_required, login_user
+from flask_login import LoginManager, login_required, login_user, current_user, logout_user
+from util.forms import LoginForm, NewUserForm
 from flask_bcrypt import Bcrypt
+from datetime import timedelta
+from jinja2 import FileSystemLoader
+
+import requests
+import os
+
+# FileSystemLoader([os.getcwd()])
 
 app = Flask(__name__,
             static_url_path="",
@@ -10,8 +18,7 @@ app.config["SECRET_KEY"] = "maQ97z2uMNyWthgvrpKd36DfW4pbCkzFsdEJ6P54tq5wkzdNE2SA
 bcrypt = Bcrypt(app)
 
 # DO NOT FORMAT
-from db.schema import *
-from util.forms import LoginForm, NewUserForm
+from db.schema import User, Profile, Playlist, Artist, Album, Song, db
 
 # flask_login
 login_manager = LoginManager()
@@ -30,7 +37,7 @@ def load_user(user_id):
 
 
 @app.route('/')
-def landing():
+def landing_page():
     return render_template("auth/index.html")
 
 
@@ -45,11 +52,11 @@ def login():
             user = User.query.filter_by(username=form.username.data).first()
         except:
             flash("Something is wrong with the database, contact your admin", "error")
-            return redirect(url_for('landing', form=form))
+            return redirect(url_for('landing_page'))
         if user:
             result = bcrypt.check_password_hash(user.password, form.password.data)
             if result:
-                login_user(user)
+                login_user(user, duration=timedelta(minutes=20))
                 return redirect(url_for('home'))
             else:
                 flash("Incorrect username or password", "error")
@@ -60,6 +67,14 @@ def login():
     else:
         flash(form.errors, "error")
         return redirect(url_for('login', form=form))
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    flash(f"{current_user.username} has logged out", "info")
+    logout_user()
+    return redirect(url_for('landing_page'))
 
 
 @app.route('/sign-up', methods=["GET", "POST"])
@@ -73,7 +88,7 @@ def sign_up():
             user = User.query.filter_by(username=form.username.data).first()
         except:
             flash("Something is wrong with the database, contact your admin", "error")
-            return redirect(url_for('landing', form=form))
+            return redirect(url_for('landing_page'))
         if not user:
             pw_hash = bcrypt.generate_password_hash(form.password_1.data, 10)
             new_user = User(username=form.username.data, password=pw_hash)
@@ -81,10 +96,10 @@ def sign_up():
             try:
                 db.session.commit()
                 flash(f"{new_user.username} successfully created", "success")
-                return redirect(url_for('landing'))
+                return redirect(url_for("landing_page"))
             except:
                 flash("Something is wrong with the database, contact your admin", "error")
-                return redirect(url_for("landing", form=form))
+                return redirect(url_for("landing_page"))
         else:
             flash("Please chose another username", "info")
             return redirect(url_for("sign_up", form=form))
@@ -96,7 +111,10 @@ def sign_up():
 @app.route("/home")
 @login_required
 def home():
-    return render_template('home.html', page='home')
+    if current_user.is_authenticated:
+        return render_template('home.html', page='home', name=current_user.username)
+    else:
+        return redirect(url_for("landing_page"))
 
 
 @app.route('/library', methods=["GET"])
@@ -108,9 +126,7 @@ def library():
 @app.route("/artists")
 @login_required
 def artists():
-    artistName = 'snoop'  # hardcoded, passed param from
     artists = Artist.query.all()
-    artist = Artist.query.filter_by(first_name=artistName).first()
 
     return render_template("artists.html",
                            appName=" Music",

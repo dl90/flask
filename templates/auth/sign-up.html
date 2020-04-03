@@ -10,17 +10,7 @@
 <body>
   Sign-up
 
-  <!-- flash util -->
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-  <p class=flashes>
-    {% for message in messages %}
-    <span>{{ message }}</span>
-    {% endfor %}
-  </p>
-  {% endif %}
-  {% endwith %}
-  <!-- flash util -->
+  {% include "auth/util/flash.html" ignore missing %}
 
   <form class="sign-in" action="{{ url_for('sign_up') }}" method="POST">
     {{ form.csrf_token }}

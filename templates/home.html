@@ -28,6 +28,9 @@
 </head>
 
 <body>
+  {% if name %}
+  <h1>Hi {{ name }}!</h1>
+  {% endif %}
   <slate-box>
     {% include 'components/side-bar.html' %}
     {% if page == 'home' %}

@@ -10,17 +10,7 @@
 <body>
   Index
 
-  <!-- flash util -->
-  {% with messages = get_flashed_messages() %}
-  {% if messages %}
-  <p class=flashes>
-    {% for message in messages %}
-    <span>{{ message }}</span>
-    {% endfor %}
-  </p>
-  {% endif %}
-  {% endwith %}
-  <!-- flash util -->
+  {% include "auth/util/flash.html" ignore missing %}
 
 </body>
 
