@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
 from util.forms import LoginForm, NewUserForm, SearchForm, AddArtistForm
+from markupsafe import escape
 from flask_bcrypt import Bcrypt
 from datetime import timedelta
 from jinja2 import FileSystemLoader
@@ -126,13 +127,14 @@ def home():
 @app.route('/library', methods=["GET"])
 @login_required
 def library():
-    return render_template('home.html', page='library')
+    return render_template('home.html', page='library', name=current_user.username)
 
 
 @app.route('/search', methods=["POST"])
 @login_required
 def search():
     search_form = SearchForm()
+    form = AddArtistForm()
 
     if request.method == 'POST' and search_form.validate_on_submit():
         results = False
@@ -143,8 +145,8 @@ def search():
             artists = Artist.query.all()
             return redirect(url_for('artists'))
         if results:
-            print(results)
-            return redirect(url_for('artists'))
+            flash("Search successful", "success")
+            return render_template('artists.html', search_results=results, form=form, search_form=search_form)
     else:
         flash(search_form.errors, "error")
         return redirect(url_for("artists"))
@@ -173,15 +175,15 @@ def artists():
                                 playlistTitle="Playlist Title",
                                 artists=artists
                                 )
+
     if request.method == 'POST' and form.validate_on_submit():
         artist = False
         try:
             artist = Artist.query.filter_by(first_name=form.first_name.data, last_name=form.last_name.data).first()
         except:
             flash("Something is wrong with the database, contact your admin", "error")
-            return redirect(url_for('landing_page'))
+            return redirect(url_for('artists'))
         if not artist:
-            print(form.data)
             # new_artist = form.populate_obj(Artist())
             new_artist = Artist(first_name=form.first_name.data, last_name=form.last_name.data, display_pic=form.display_pic.data)
             db.session.add(new_artist)

@@ -1,8 +1,9 @@
 <link href='{{ url_for('static', filename='components/library-layout.css') }}' rel='stylesheet' />
 
 <main-layout>
-  <a class='button login-button'>Sign In</a>
-  <h1 class='header'>Your Library</h1>
+  {% if name %}
+  <h1 class="header">{{ name }}'s Library</h1>
+  {% endif %}
   <row-break></row-break>
   <album-row-container>
     <h2 class='row-label'>Songs</h2>

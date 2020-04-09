@@ -1,9 +1,12 @@
 from app import app
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Text
 from sqlalchemy.orm import relationship
 from datetime import date
 from flask_login import UserMixin
+
+# app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/database.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -164,4 +167,5 @@ class Song(db.Model):
 
 
 if __name__ == '__main__':
+    db.drop_all()
     db.create_all()

@@ -72,9 +72,10 @@
 
   <section class="main-content">
 
-    <!-- add artist -->
+    <!-- flash -->
     {% include "auth/util/flash.html" ignore missing %}
 
+    <!-- add artist -->
     <form class="add-artist" action="{{ url_for('artists') }}" method="POST">
       {{ form.csrf_token }}
       {{ form.first_name.label }} {{ form.first_name }}
@@ -82,7 +83,6 @@
       {{ form.display_pic.label }} {{ form.display_pic }}
       <input type="submit" value="Add Artist">
     </form>
-    <!-- add artist -->
 
     <!-- search form -->
     <form class="search" action="{{ url_for('search') }}" method="POST">
@@ -91,9 +91,22 @@
       <input type="submit" value="Search">
     </form>
 
-    <div class="top-button d-flex flex-row-reverse">
+    {% if search_results %}
+    {% for result in search_results.data %}
+    <h3>{{ result.title }}</h3>
+    <audio controls>
+    <source src={{ result.preview }} type="audio/mp3">
+    </audio>
+    <img src={{ result.album.cover_medium }}>
+    <img src={{ result.artist.picture_medium }}>
+    <p>{{ result.album }}</p>
+    <p>{{ result.artist }}</p>
+    {% endfor %}
+    {% endif %}
+
+    <!-- <div class="top-button d-flex flex-row-reverse">
       <button type="button" class='btn btn-primary'>Sign In</button>
-    </div>
+    </div> -->
     <div class="mainImage d-flex justify-content-center">
       <img id="mainImage" class="profileImage" src={{ profileImage }} alt={{ alt }}>
     </div>
@@ -185,7 +198,7 @@
         {% for artist in artists: %}
         <div class="artist">
           <a href={{artist_page}}>
-            <img class="profileImage" src={{ artist.album_art }} alt={{ alt }}>
+            <img class="profileImage" src={{ artist.display_pic }} alt={{ alt }}>
           </a>
           <p>{{ artist.first_name + " " + artist.last_name }}</p>
         </div>
