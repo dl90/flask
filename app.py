@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
 from util.forms import LoginForm, NewUserForm, SearchForm, AddArtistForm
 from markupsafe import escape
-from flask_bcrypt import Bcrypt
 from datetime import timedelta
 from jinja2 import FileSystemLoader
 
@@ -18,8 +17,18 @@ app = Flask(__name__,
 app.config["SECRET_KEY"] = "maQ97z2uMNyWthgvrpKd36DfW4pbCkzFsdEJ6P54tq5wkzdNE2SA2JzJU7AjD3aotiU4go8p9usLFssa852GEd3n3UbpwVVUT4csDjEdSrFZnGXk68pEChHgVA5cmmuB"
 bcrypt = Bcrypt(app)
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/database.sqlite3'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+
 # DO NOT FORMAT
-from db.schema import User, Profile, Playlist, Artist, Album, Song, db
+# try:
+from db import schema
+# except ImportError:
+#     print(ImportError.msg)
+#     print("Import error")
+# from db import db
+
 
 # flask_login
 login_manager = LoginManager()

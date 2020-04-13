@@ -1,16 +1,9 @@
-from app import app
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Text
 from sqlalchemy.orm import relationship
 from datetime import date
 from flask_login import UserMixin
+from ..create_server import db
 
-# app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/database.sqlite3'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
 
 class User(UserMixin, db.Model):
     __tablename__ = 'User'
@@ -164,8 +157,3 @@ class Song(db.Model):
 
     def __repr__(self):
         return '<ID: %r  Title: %r  Primary Artist: %r  Primary Album: %r  Rating: %r>\n' % (self.id, self.title, self.primary_artist, self.primary_album, self.rating)
-
-
-if __name__ == '__main__':
-    db.drop_all()
-    db.create_all()
