@@ -1,0 +1,43 @@
+player-controls {
+  grid-area: player-controls;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 90px;
+  display: flex;
+  background-color: rgba(45, 45, 45, 0.75);
+  backdrop-filter: blur(20px) saturate(50%);
+  /* font-weight: bold; */
+  box-shadow: 0 0 0 1px #555;
+  justify-content: center;
+  z-index: 1;
+}
+player-control-button {
+  grid-area: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  align-self: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 5rem;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
+  transition: box-shadow 0.1s ease-out;
+  z-index: 1;
+}
+player-control-button:hover {
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.5);
+}
+.player-control-icon {
+  width: 1.5rem;
+  height: auto;
+  margin-left: 0.2rem;
+  pointer-events: none;
+}
+.player-control-icon-pause {
+  width: 1.5rem;
+  height: auto;
+  /* margin-left: 0.2rem; */
+  pointer-events: none;
+}
