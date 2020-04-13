@@ -1,19 +1,15 @@
-from flask import Flask, render_template, request, escape
-app = Flask(__name__,
-            static_url_path='',
-            static_folder='public',
-            template_folder='templates')
-from db.schema import (User, Profile, Playlist, Artist, Album, Song)
+from flask import Flask, render_template, request, escape, redirect
+app = Flask(__name__)
+# from db.schema import (User, Profile, Playlist, Artist, Album, Song)
 
-# @app.route('/')
-# def home():
-#     return "<h1>Hello world</h1>"
+@app.route('/')
+def home():
+    return redirect( '/home' )
 
-# passing args to rendering templates
+# pass args to templates
 @app.route('/<page>')
 def pageRoute(page):
     return render_template(f'{page}.html', page='home')
-
 
 @app.route('/library')
 def library():
@@ -84,4 +80,4 @@ def playlists():
 
 # Listener
 if __name__ == "__main__":
-    app.run(port=9999, debug=True)
+    app.run(port=7000, debug=True)
