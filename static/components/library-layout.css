@@ -190,4 +190,9 @@ play-button:hover {
   width: 1.5rem;
   height: auto;
   margin-left: 0.2rem;
+  pointer-events: none;
+}
+
+#player {
+  display: none;
 }
