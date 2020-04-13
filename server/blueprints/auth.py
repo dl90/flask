@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, abort, request, flash, redirect, url_for
 from flask_login import login_required, login_user, current_user, logout_user
-from datetime import timedelta
+from datetime import timedelta, datetime
 from jinja2 import TemplateNotFound
 from markupsafe import escape
 from ..create_server import bcrypt, login_manager, db
@@ -8,7 +8,7 @@ from ..util.forms import LoginForm, NewUserForm
 from ..db.schema import User
 
 auth = Blueprint('auth', __name__)
-print(dir(auth))
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -27,7 +27,7 @@ def login():
 
     if request.method == "GET":
         try:
-            return render_template("auth/login.html", form=form)
+            return render_template("auth/login.html", route=url_for(".login"), form=form)
         except TemplateNotFound:
             abort(404)
 
@@ -39,19 +39,20 @@ def login():
             flash("Something is wrong with the database, contact your admin", "error")
             return redirect(url_for('initialize'))
         if user:
-            result = bcrypt.check_password_hash(user.password, form.password.data)
+            result = bcrypt.check_password_hash(
+                user.password, form.password.data)
             if result:
                 login_user(user, duration=timedelta(minutes=20))
-                return redirect(url_for('home'))
+                return redirect(url_for('secure.home'))
             else:
                 flash("Incorrect username or password", "error")
-                return redirect(url_for('login'))
+                return redirect(url_for(".login"))
         else:
             flash("Incorrect username or password", "error")
-            return redirect(url_for('login'))
+            return redirect(url_for(".login"))
     else:
         flash(form.errors, "error")
-        return redirect(url_for('login'))
+        return redirect(url_for(".login"))
 
 
 @auth.route('/logout')
@@ -67,7 +68,7 @@ def sign_up():
     form = NewUserForm()
     if request.method == "GET":
         try:
-            return render_template("auth/sign-up.html", form=form)
+            return render_template("auth/sign-up.html", route=url_for(".sign_up"), form=form)
         except TemplateNotFound:
             abort(404)
 
@@ -80,19 +81,20 @@ def sign_up():
             return redirect(url_for('initialize'))
         if not user:
             pw_hash = bcrypt.generate_password_hash(form.password_1.data, 10)
-            new_user = User(username=form.username.data, password=pw_hash)
+            new_user = User(username=escape(form.username.data),
+                            password=pw_hash, creation_date=datetime.now())
             db.session.add(new_user)
             try:
                 db.session.commit()
                 flash(f"{new_user.username} successfully created", "success")
-                return redirect(url_for("landing_page"))
+                return redirect(url_for("initialize"))
             except:
                 flash(
                     "Something is wrong with the database, contact your admin", "error")
-                return redirect(url_for("landing_page"))
+                return redirect(url_for("initialize"))
         else:
             flash("Please chose another username", "info")
-            return redirect(url_for("sign_up"))
+            return redirect(url_for(".sign_up"))
     else:
         flash(form.errors, "error")
-        return redirect(url_for("sign_up"))
+        return redirect(url_for(".sign_up"))

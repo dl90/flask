@@ -18,10 +18,10 @@ class User(UserMixin, db.Model):
     is_premium      = db.Column(db.Boolean)
     profile         = relationship("Profile", uselist=False, back_populates="user")
 
-    def __init__(self, username, password, recommendations=None, likes=None, play_history=None, is_premium=False, profile=None) :
+    def __init__(self, username, password, creation_date=None, recommendations=None, likes=None, play_history=None, is_premium=False, profile=None) :
         self.username        = username
         self.password        = password
-        self.creation_date   = date.today()
+        self.creation_date   = creation_date
         self.recommendations = recommendations
         self.likes           = likes
         self.play_history    = play_history
@@ -67,7 +67,7 @@ class Playlist(db.Model):
     date           = db.Column(db.DateTime, default=date.today())
     genre_of_songs = db.Column(db.String(255))
     user           = db.relationship('User', backref=db.backref('playlists', lazy=True))
-    rating          = db.Column(db.Integer)
+    rating         = db.Column(db.Integer)
 
     def __init__(self, user_id, name, songs=None, genre_of_songs=None, rating=None):
         self.user_id        = user_id
@@ -107,15 +107,15 @@ class Artist(db.Model):
 class Album(db.Model):
     __tablename__ = 'Album'
 
-    id              = db.Column(db.Integer, primary_key=True)
-    title           = db.Column(db.String(255), nullable=False)
-    artists         = db.Column(db.PickleType) # list of artist/primary_artist
-    art             = db.Column(db.String(255))
-    song_list       = db.Column(db.PickleType, nullable=False)
-    release_date    = db.Column(db.DateTime, nullable=False, default=date.today())
-    artist_id       = db.Column(db.Integer, db.ForeignKey('Artist.id'), nullable=False)
-    primary_artist  = db.relationship('Artist', backref=db.backref('albums', lazy=True))
-    rating          = db.Column(db.Integer)
+    id             = db.Column(db.Integer, primary_key=True)
+    title          = db.Column(db.String(255), nullable=False)
+    artists        = db.Column(db.PickleType) # list of artist/primary_artist
+    art            = db.Column(db.String(255))
+    song_list      = db.Column(db.PickleType, nullable=False)
+    release_date   = db.Column(db.DateTime, nullable=False, default=date.today())
+    artist_id      = db.Column(db.Integer, db.ForeignKey('Artist.id'), nullable=False)
+    primary_artist = db.relationship('Artist', backref=db.backref('albums', lazy=True))
+    rating         = db.Column(db.Integer)
 
     def __init__(self, title, primary_artist, song_list, artists=None, art=None, rating=None, release_date=date.today()):
         self.title          = title
@@ -133,17 +133,17 @@ class Album(db.Model):
 class Song(db.Model):
     __tablename__ = "Song"
 
-    id              = db.Column(db.Integer, primary_key=True)
-    title           = db.Column(db.String(255), nullable=False)
-    artists         = db.Column(db.PickleType)
-    realease_date   = db.Column(db.DateTime, default=date.today(), nullable=False)
-    cover_art       = db.Column(db.String(255))
-    lyrics          = db.Column(db.Text, nullable=False)
-    rating          = db.Column(db.Integer)
-    artist_id       = db.Column(db.Integer, db.ForeignKey('Artist.id'), nullable=False)
-    album_id        = db.Column(db.Integer, db.ForeignKey('Album.id'), nullable=False)
-    primary_artist  = db.relationship('Artist', backref=db.backref('songs', lazy=True))
-    primary_album   = db.relationship('Album', backref=db.backref('songs', lazy=True))
+    id             = db.Column(db.Integer, primary_key=True)
+    title          = db.Column(db.String(255), nullable=False)
+    artists        = db.Column(db.PickleType)
+    realease_date  = db.Column(db.DateTime, default=date.today(), nullable=False)
+    cover_art      = db.Column(db.String(255))
+    lyrics         = db.Column(db.Text, nullable=False)
+    rating         = db.Column(db.Integer)
+    artist_id      = db.Column(db.Integer, db.ForeignKey('Artist.id'), nullable=False)
+    album_id       = db.Column(db.Integer, db.ForeignKey('Album.id'), nullable=False)
+    primary_artist = db.relationship('Artist', backref=db.backref('songs', lazy=True))
+    primary_album  = db.relationship('Album', backref=db.backref('songs', lazy=True))
 
     def __init__(self, title, primary_artist, primary_album, lyrics, artists=None, cover_art=None, rating=None, release_date=date.today()):
         self.title          = title

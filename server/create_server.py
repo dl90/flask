@@ -17,9 +17,6 @@ def create_server(config_filename):
     bcrypt.init_app(app)
     login_manager.init_app(app)
 
-    from .blueprints.auth import auth
-    app.register_blueprint(auth)
-
     @app.route("/")
     def initialize():
         return render_template("auth/index.html")
@@ -33,6 +30,11 @@ def create_server(config_filename):
             flash("Database has been reset", "info")
             return render_template("auth/index.html")
 
+    from .blueprints.auth import auth
+    app.register_blueprint(auth)
+
+    from .blueprints.secure import secure
+    app.register_blueprint(secure)
 
 
     return app

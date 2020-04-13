@@ -4,19 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>🚀</title>
 </head>
 
 <body>
+  <h1>Welcome</h1>
 
-
-  {% include "auth/util/flash.html" ignore missing %}
-  <a href="/auth/login">Login</a>
-  <a href="/auth/sign-up">Sign-up</a>
+  {% include "util/flash.html" ignore missing %}
+  <div>
+    <a href="/login" class="btn btn-outline-light">Login</a>
+    <a href="/sign-up" class="btn btn-outline-light">Sign-up</a>
+  </div>
 
   <style>
     body {
-      background-image: url("/static/images/index.png");
+      background-image: url("/static/images/index.jpg");
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -30,19 +34,6 @@
       justify-content: center;
       align-items: center;
     }
-
-    a {
-      font: bold 11px Arial;
-      text-decoration: none;
-      background-color: rgb(0, 0, 0);
-      color: #ffffff;
-      padding: 2px 6px 2px 6px;
-      border-top: 1px solid #CCCCCC;
-      border-right: 1px solid #333333;
-      border-bottom: 1px solid #333333;
-      border-left: 1px solid #CCCCCC;
-    }
-
   </style>
 </body>
 

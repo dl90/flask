@@ -4,21 +4,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>👮‍♂️</title>
 </head>
 
 <body>
-
   <h1>Login</h1>
 
-  {% include "auth/util/flash.html" ignore missing %}
+  {% include "util/flash.html" ignore missing %}
 
-  <form class="login" action="{{ url_for('login') }}" method="POST">
-    {{ form.csrf_token }}
-    {{ form.username.label }} {{ form.username }}
-    {{ form.password.label }} {{ form.password }}
-    <input type="submit" value="Login">
-  </form>
+  <div class="container-flex">
+    <form class="login" action={{ route }} method="POST">
+      {{ form.csrf_token }}
+      <div class="form-group">
+        {{ form.username.label }} {{ form.username(class_='form-control') }}
+      </div>
+      <div class="form-group">
+        {{ form.password.label }} {{ form.password(class_='form-control') }}
+      </div>
+      <div class="form-group float-right">
+        <a href="/" class="btn btn-outline-light">Back</a>
+        <input type="submit" value="Login" class="btn btn-outline-danger">
+      </div>
+    </form>
+  </div>
 
   <style>
     body {
