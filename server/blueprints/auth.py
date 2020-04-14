@@ -21,13 +21,19 @@ def load_user(user_id):
         return user
 
 
+@login_manager.unauthorized_handler
+def unauthorized():
+    flash("👮‍♀️ Unauthorized", "error")
+    return redirect(url_for('initialize'))
+
+
 @auth.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
 
     if request.method == "GET":
         try:
-            return render_template("auth/login.html", route=url_for(".login"), form=form)
+            return render_template("auth/login.html", title="👮‍♂️" ,route=url_for(".login"), form=form)
         except TemplateNotFound:
             abort(404)
 
@@ -55,20 +61,13 @@ def login():
         return redirect(url_for(".login"))
 
 
-@auth.route('/logout')
-@login_required
-def logout():
-    flash(f"{current_user.username} has logged out", "info")
-    logout_user()
-    return redirect(url_for('initialize'))
-
-
 @auth.route('/sign-up', methods=["GET", "POST"])
 def sign_up():
     form = NewUserForm()
+
     if request.method == "GET":
         try:
-            return render_template("auth/sign-up.html", route=url_for(".sign_up"), form=form)
+            return render_template("auth/sign-up.html", title="💣" ,route=url_for(".sign_up"), form=form)
         except TemplateNotFound:
             abort(404)
 
@@ -98,3 +97,11 @@ def sign_up():
     else:
         flash(form.errors, "error")
         return redirect(url_for(".sign_up"))
+
+
+@auth.route('/logout')
+@login_required
+def logout():
+    flash(f"{current_user.username} has logged out", "info")
+    logout_user()
+    return redirect(url_for('initialize'))

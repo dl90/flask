@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>🖥</title>
+  <style>
+    body {
+      margin: 0em;
+      background-color: black;
+      color: orange;
+      width: 100vw;
+      min-width: 550px;
+    }
+
+    .charts,
+    .selection {
+      height: 90vh;
+      overflow: auto;
+      margin-top: 2em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+      aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <span class="navbar-brand">Welcome {{name}}</span>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav ml-5 mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Library</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" >Playlist</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      <a href="/auth/logout" class="btn btn-outline-danger ml-2 my-2 my-sm-0">Logout</a>
+    </div>
+  </nav>
+
+  {% include "util/flash.html" ignore missing %}
+
+  <div class="container-fluid">
+    <div class="row row-cols-3">
+      <div class="col-sm-3 charts">
+        {% for item in chart %}
+        <span class="row"><a href="api/list/{{item}}">{{item}}</a></span>
+        {% endfor %}
+      </div>
+
+      <div class="col-sm-6 selection">
+        <h3>Todays Billboard top 100 🤙</h3>
+        {% for item in selection %}
+        <div class="row">
+          <span class="col-sm-1">{{ item.rank }}</span>
+          <span class="col-sm-4">{{ item.title }}</span>
+          <span class="col-sm-6">{{ item.artist }}</span>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="col">
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

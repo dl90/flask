@@ -1,21 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <title>🚀</title>
-</head>
+{% include "auth/components/head.html" %}
 
 <body>
   <h1>Welcome</h1>
 
   {% include "util/flash.html" ignore missing %}
   <div>
-    <a href="/login" class="btn btn-outline-light">Login</a>
-    <a href="/sign-up" class="btn btn-outline-light">Sign-up</a>
+    <a href="/auth/login" class="btn btn-outline-light">Login</a>
+    <a href="/auth/sign-up" class="btn btn-outline-light">Sign-up</a>
   </div>
 
   <style>
@@ -25,16 +16,9 @@
       background-repeat: no-repeat;
       background-position: center;
       background-color: black;
-      color: white;
-      width: 100vw;
-      height: 100vh;
-      margin: 0em;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
     }
   </style>
+  {% include "auth/components/style.html" %}
 </body>
 
 </html>
