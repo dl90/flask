@@ -17,4 +17,4 @@
 - Add music playback
   - I added music playback by utilizing the YouTube Player API
 - Add music search
-  - I added search to access the entire music catalogue of YouTube with the YouTubue Data API
+  - I added search to access the entire music catalogue of YouTube with the YouTube Data API
