@@ -4,7 +4,17 @@
 
 
 ### Jaime Deng
-
+- Created base classes and class functions
+  - Worked on creating base classes and class functions within specifc classes
+- Design the Albums, Artists, and Playlists pages in Balsamiq Mockups
+  - Dove into Apple's design of [Apple Music Web Beta](https://beta.music.apple.com), and recreated it inside of Balsamiq Mockups
+- Learn and familiarizing with jinja2
+  - Invested time into learning jinja2
+  - Read documentation
+  - Viewed online guides showing the various functionalities, and practicing them myself
+- Turned Balsamiq wireframe to static page with Jinja2 templates and CSS
+  - Implemented css hover effect on album art to replicate apple music's animation
+  - Made the varying components within the pages as jinja variables
 
 ### Chris Ng
 - Scaffold base classes
