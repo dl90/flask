@@ -27,9 +27,10 @@ def create_server(config_filename):
     def reset():
         try:
             db.drop_all()
+            flash("Database clearned...", "info")
         finally:
             db.create_all()
-            flash("Database has been reset", "info")
+            flash("Database recreated...", "info")
             return render_template("auth/index.html", title="💥")
 
     from .blueprints.auth import auth
@@ -37,5 +38,8 @@ def create_server(config_filename):
 
     from .blueprints.secure import secure
     app.register_blueprint(secure, url_prefix="/secure")
+
+    from .blueprints.local_api import local
+    app.register_blueprint(local, url_prefix="/local")
 
     return app

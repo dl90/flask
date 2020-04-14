@@ -46,9 +46,10 @@
           <a class="nav-link" href="#" >Playlist</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+      <form class="form-inline my-2 my-lg-0" action={{ route }} method="POST">
+        {{ search_form.csrf_token }}
+        {{ search_form.query(class_="form-control mr-sm-2", placeholder="Search") }}
+        <input type="submit" value="Search" class="btn btn-outline-dark my-2 my-sm-0">
       </form>
       <a href="/auth/logout" class="btn btn-outline-danger ml-2 my-2 my-sm-0">Logout</a>
     </div>
