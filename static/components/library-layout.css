@@ -143,7 +143,7 @@ artist-container {
 artist-container:hover {
   cursor: pointer;
 }
-artist-container:hover > .cover {
+artist-container:hover > .artist-cover {
   filter: brightness(0.8);
 }
 artist-container:hover > play-button {
@@ -190,4 +190,9 @@ play-button:hover {
   width: 1.5rem;
   height: auto;
   margin-left: 0.2rem;
+  pointer-events: none;
+}
+
+#player {
+  display: none;
 }
