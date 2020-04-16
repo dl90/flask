@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 import requests
 import os
 
-
+# /api/local..
 local = Blueprint('local_api', __name__)
 
 
@@ -25,7 +25,6 @@ def api_search(query):
 @login_required
 def search():
     search_form = SearchForm()
-    form = AddArtistForm()
 
     if request.method == 'POST' and search_form.validate_on_submit():
         results = False
@@ -34,13 +33,15 @@ def search():
         except:
             flash("Something went wrong with the search API, contact your admin", "error")
             artists = Artist.query.all()
-            return redirect(url_for('home'))
+            return redirect(url_for("home"))
         if results:
             flash("Search successful", "success")
-            return results
+            return render_template("console/search.html", name=current_user.username, title="🕵️‍♂️", search_result=results, search_form=search_form, route=url_for("local_api.search"))
     else:
         flash(search_form.errors, "error")
-        return redirect(url_for("artists"))
+        return redirect(url_for("home"))
+
+
 
 
 # @local.route("/artists", methods=["GET", "POST"])

@@ -1,0 +1,54 @@
+{% include "auth/components/head.html" %}
+
+<body>
+  {% include "console/components/navbar.html" %}
+  {% include "util/flash.html" ignore missing %}
+
+  <h3>Search Results:</h3>
+
+  {% if search_result %}
+  {% for item in search_result.data %}
+
+  <h3>{{ item.title }}</h5>
+
+  <audio controls>
+    <source src={{ item.preview }} type="audio/mp3">
+  </audio>
+
+  <img src={{ item.album.cover_medium }}>
+  <img src={{ item.artist.picture_medium }}>
+
+  <div class="container-fluid">
+    <h4>RAW JSON</h3>
+    <p>{{ item.album }}</p>
+    <p>{{ item.artist }}</p>
+    <p>{{ item }}</p>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <style>
+    body {
+      margin: 0em;
+      background-color: black;
+      color: orange;
+      width: 100vw;
+      min-width: 550px;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+      event.preventDefault()
+
+      document.addEventListener('play', function (e) {
+        const players = document.getElementsByTagName("audio");
+        for (let i = 0, len = players.length; i < len; i++) {
+          if (players[i] != e.target) {
+            players[i].pause();
+          }
+        }
+      }, true);
+    });
+  </script>
+</body>

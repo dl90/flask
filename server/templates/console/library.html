@@ -1,11 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+{% include "auth/components/head.html" %}
+
 <body>
-  
+  {% include "console/components/navbar.html" %}
+  {% include "util/flash.html" ignore missing %}
+
+  <h1>TODO LIBRARY</h1>
+
+  <style>
+    body {
+      margin: 0em;
+      background-color: black;
+      color: orange;
+      width: 100vw;
+      min-width: 550px;
+    }
+  </style>
 </body>
+
 </html>

@@ -7,6 +7,7 @@ from ..create_server import bcrypt, login_manager, db
 from ..util.forms import LoginForm, NewUserForm
 from ..db.schema import User
 
+# /auth...
 auth = Blueprint('auth', __name__)
 
 

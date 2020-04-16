@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, render_template, flash
+from flask import Flask, Blueprint, render_template, flash, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
@@ -18,6 +18,9 @@ def create_server(config_filename):
     db.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
+    login_manager.session_protection = "strong"
+    # login_manager.login_view = "auth/login"
+    # login_manager.login_message = "Please re-login"
 
     @app.route("/")
     def initialize():
@@ -40,6 +43,6 @@ def create_server(config_filename):
     app.register_blueprint(secure, url_prefix="/secure")
 
     from .blueprints.local_api import local
-    app.register_blueprint(local, url_prefix="/local")
+    app.register_blueprint(local, url_prefix="/api/local")
 
     return app
