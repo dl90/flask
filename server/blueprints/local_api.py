@@ -36,44 +36,40 @@ def search():
             return redirect(url_for("home"))
         if results:
             flash("Search successful", "success")
-            return render_template("console/search.html", name=current_user.username, title="🕵️‍♂️", search_result=results, search_form=search_form, route=url_for("local_api.search"))
+            return render_template("console/search.html", name=current_user.username, title="🕵️‍♂️",
+            search_result=results, search_form=search_form, route=url_for("local_api.search"))
     else:
         flash(search_form.errors, "error")
         return redirect(url_for("home"))
 
 
-
-
-# @local.route("/artists", methods=["GET", "POST"])
-# @login_required
-# def artists():
-#     form = AddArtistForm()
-#     search_form = SearchForm()
-#     if request.method == "GET":
-#         artists = Artist.query.all()
-#         return render_template("TODO")  # TODO
-
-#     if request.method == 'POST' and form.validate_on_submit():
-#         artist = False
-#         try:
-#             artist = Artist.query.filter_by(
-#                 first_name=form.first_name.data, last_name=form.last_name.data).first()
-#         except:
-#             flash("Something is wrong with the database, contact your admin", "error")
-#             return redirect(url_for('artists'))
-#         if not artist:
-#             # new_artist = form.populate_obj(Artist())
-#             new_artist = Artist(first_name=form.first_name.data,
-#                                 last_name=form.last_name.data, display_pic=form.display_pic.data)
-#             db.session.add(new_artist)
-#             try:
-#                 db.session.commit()
-#                 flash(f"{new_artist} added", "success")
-#                 return redirect(url_for("artists"))
-#             except:
-#                 flash(
-#                     "Something is wrong with the database, contact your admin", "error")
-#                 return redirect(url_for("artists"))
-#     else:
-#         flash(form.errors, "error")
-#         return redirect(url_for("artists"))
+@local.route('/new-artist', methods=["POST"])
+@login_required
+def addArtist():
+    form = AddArtistForm()
+    if form.validate_on_submit():
+        artist = False
+        try:
+            artist = Artist.query.filter_by(
+                first_name=form.first_name.data, last_name=form.last_name.data).first()
+        except:
+            flash("Something is wrong with the database, contact your admin", "error")
+            return redirect(url_for('secure.library'))
+        if not artist:
+            # new_artist = form.populate_obj(Artist())
+            new_artist = Artist(first_name=form.first_name.data, last_name=form.last_name.data, display_pic=form.display_pic.data)
+            db.session.add(new_artist)
+            try:
+                db.session.commit()
+                flash(f"{new_artist} added", "success")
+                return redirect(url_for("secure.library"))
+            except:
+                flash(
+                    "Something is wrong with the database, contact your admin", "error")
+                return redirect(url_for("secure.library"))
+        else:
+            flash("Artist already exists", "error")
+            return redirect(url_for('secure.library'))
+    else:
+        flash(form.errors, "error")
+        return redirect(url_for("secure.library"))

@@ -13,11 +13,8 @@
       <li class="nav-item">
         <a class="nav-link" href="/secure/library">Library</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Playlist</a>
-      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0" action={{ route }} method="POST">
+    <form class="form-inline my-2 my-lg-0" action={{ searchRoute }} method="POST">
       {{ search_form.csrf_token }}
       {{ search_form.query(class_="form-control mr-sm-2", placeholder="Search") }}
       <input type="submit" value="Search" class="btn btn-outline-dark my-2 my-sm-0">

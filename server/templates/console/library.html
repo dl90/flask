@@ -4,7 +4,39 @@
   {% include "console/components/navbar.html" %}
   {% include "util/flash.html" ignore missing %}
 
-  <h1>TODO LIBRARY</h1>
+  <div class="container">
+    <form class="add-artist" action={{ addArtistRoute }} method="POST">
+      {{ add_artist_form.csrf_token }}
+      <div class="form-group">
+        {{ add_artist_form.first_name.label }} {{ add_artist_form.first_name(class_='form-control') }}
+      </div>
+      <div class="form-group">
+        {{ add_artist_form.last_name.label }} {{ add_artist_form.last_name(class_='form-control') }}
+      </div>
+      <div class="form-group">
+        {{ add_artist_form.display_pic.label }} {{ add_artist_form.display_pic(class_='form-control') }}
+      </div>
+      <div class="form-group float-right">
+        <!-- <a href="/secure/library" class="btn btn-outline-light">Cancel</a> -->
+        <input type="submit" value="Submit" class="btn btn-outline-danger">
+      </div>
+    </form>
+  </div>
+
+  <div class="col-sm-6 selection">
+    <h3>Artists 👩‍🎤</h3>
+
+    {% for artist in artists %}
+    <div class="row">
+      <span class="col-sm-1">{{ artist.id }}</span>
+      <span class="col-sm-1">{{ artist.rating }}</span>
+      <span class="col-sm-2">{{ artist.first_name }}</span>
+      <span class="col-sm-2">{{ artist.last_name }}</span>
+      <span class="col-sm-2"><img src={{ artist.display_pic }}></span>
+    </div>
+    {% endfor %}
+  </div>
+
 
   <style>
     body {
