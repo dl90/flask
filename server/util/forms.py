@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileRequired
 from werkzeug.utils import secure_filename
-from wtforms import StringField, PasswordField
-from wtforms.validators import InputRequired, Email, Length, EqualTo, URL
+from wtforms import StringField, PasswordField, SelectField
+from wtforms.validators import InputRequired, Email, Length, EqualTo, URL, NumberRange
 
 
 class LoginForm(FlaskForm):
@@ -20,4 +20,5 @@ class SearchForm(FlaskForm):
 class AddArtistForm(FlaskForm):
     first_name = StringField("First Name", validators=[InputRequired(), Length(min=1, max=-1, message="Must be greater than 1 character long.")])
     last_name = StringField("Last Name", validators=[InputRequired(), Length(min=1, max=-1, message="Must be greater than 1 character long.")])
+    rating = SelectField(u"Rating", choices=[(1, "⭐️"), (2, "⭐️⭐️"), (3, "⭐️⭐️⭐️"), (4, "⭐️⭐️⭐️⭐️"), (5, "⭐️⭐️⭐️⭐️⭐️")], coerce=int, default=3)
     display_pic = StringField("Display Picture (URL)", validators=[URL(require_tld=False, message="Valid URL required.")])

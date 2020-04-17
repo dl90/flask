@@ -8,7 +8,7 @@ import requests
 import os
 
 # /api/local..
-local = Blueprint('local_api', __name__)
+local = Blueprint("local_api", __name__)
 
 
 def api_search(query):
@@ -21,12 +21,12 @@ def api_search(query):
     return response.json()
 
 
-@local.route('/search', methods=["POST"])
+@local.route("/search", methods=["POST"])
 @login_required
 def search():
     search_form = SearchForm()
 
-    if request.method == 'POST' and search_form.validate_on_submit():
+    if request.method == "POST" and search_form.validate_on_submit():
         results = False
         try:
             results = api_search(search_form.query.data)
@@ -43,33 +43,53 @@ def search():
         return redirect(url_for("home"))
 
 
-@local.route('/new-artist', methods=["POST"])
+@local.route("/artist", methods=["POST", "PUT", "DELETE"])
 @login_required
-def addArtist():
+def artist():
     form = AddArtistForm()
-    if form.validate_on_submit():
+
+    if request.method == "POST" and form.validate_on_submit():
         artist = False
         try:
-            artist = Artist.query.filter_by(
-                first_name=form.first_name.data, last_name=form.last_name.data).first()
+            artist = Artist.query.filter_by(first_name=form.first_name.data, last_name=form.last_name.data).first()
         except:
             flash("Something is wrong with the database, contact your admin", "error")
             return redirect(url_for('secure.library'))
         if not artist:
-            # new_artist = form.populate_obj(Artist())
-            new_artist = Artist(first_name=form.first_name.data, last_name=form.last_name.data, display_pic=form.display_pic.data)
+            new_artist = Artist(first_name=form.first_name.data, last_name=form.last_name.data, display_pic=form.display_pic.data, rating=form.rating.data)
             db.session.add(new_artist)
             try:
                 db.session.commit()
                 flash(f"{new_artist} added", "success")
                 return redirect(url_for("secure.library"))
             except:
-                flash(
-                    "Something is wrong with the database, contact your admin", "error")
+                flash("Something is wrong with the database, contact your admin", "error")
                 return redirect(url_for("secure.library"))
         else:
             flash("Artist already exists", "error")
             return redirect(url_for('secure.library'))
+
+
+    elif request.method == "DELETE":
+        body = request.get_json(force=True)
+        try:
+            selected = Artist.query.filter_by(id=body["id"]).one()
+        except:
+            flash("Thats odd...", "error")
+            return redirect(url_for("secure.library"))
+        if selected:
+            db.session.delete(selected)
+            try:
+                db.session.commit()
+                flash(f"{selected.id} deleted", "success")
+                return redirect(url_for("secure.library")) # cant redirect to same page?
+            except:
+                flash("Something is wrong with the database, contact your admin", "error")
+                return redirect(url_for("secure.library"))
+        else:
+            flash("Thats odd...", "error")
+            return redirect(url_for("secure.library"))
+
     else:
         flash(form.errors, "error")
         return redirect(url_for("secure.library"))

@@ -41,10 +41,10 @@
     document.addEventListener("DOMContentLoaded", (event) => {
       event.preventDefault()
 
-      document.addEventListener('play', function (e) {
+      document.addEventListener('play', function (event) {
         const players = document.getElementsByTagName("audio");
         for (let i = 0, len = players.length; i < len; i++) {
-          if (players[i] != e.target) {
+          if (players[i] != event.target) {
             players[i].pause();
           }
         }

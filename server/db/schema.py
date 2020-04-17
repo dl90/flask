@@ -89,7 +89,7 @@ class Artist(db.Model):
     last_name     = db.Column(db.String(255), nullable=False)
     album_list    = db.Column(db.PickleType)
     display_pic   = db.Column(db.String(255))
-    rating        = db.Column(db.Integer)
+    rating        = db.Column(db.Integer, default=3)
     creation_date = db.Column(db.DateTime, default=date.today())
 
     def __init__(self, first_name, last_name, album_list=None, display_pic=None, rating=None):

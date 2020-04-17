@@ -43,7 +43,7 @@ def rankings():
 
 
 
-@secure.route('/library', methods=["GET"])
+@secure.route('/library', methods=["GET", "DELETE"])
 @login_required
 def library():
     search_form = SearchForm()
@@ -51,4 +51,4 @@ def library():
     artists = Artist.query.all()
 
     return render_template('console/library.html', name=current_user.username, title="📚", searchRoute=url_for("local_api.search"), search_form=search_form,
-    artists=artists, add_artist_form=add_artist_form, addArtistRoute=url_for("local_api.addArtist"))
+    artists=artists, add_artist_form=add_artist_form, addArtistRoute=url_for("local_api.artist"), deleteArtistRoute=url_for('local_api.artist'))
