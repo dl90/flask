@@ -1,6 +1,6 @@
 # Apple Music CLone
 
-## Getting Started (pip)
+## Getting Started
 ``` bash
 pip install -r requirements.txt
 ```
