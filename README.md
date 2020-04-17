@@ -4,7 +4,7 @@
 ## Getting Started (pip)
 Install dependencies
 ``` bash
-pip install
+pip install flask
 
 ```
 
