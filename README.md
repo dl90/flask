@@ -4,11 +4,13 @@
 ## Getting Started (pip)
 Install dependencies
 ``` bash
+pip install
 
 ```
 
 Run
 ``` bash
+python3 app.py
 
 ```
 
