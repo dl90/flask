@@ -1,4 +1,4 @@
-# Apple Music CLone
+# Apple Music Clone
 
 ## Getting Started
 ``` bash
